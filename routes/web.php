@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,18 +13,27 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// In your routes/web.php
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+Route::view('/', 'components.login')->name('login.page');
 
-
-Route::view('/','components.login');
-Route::view('/appointment/booking','components.booking.booking');
-
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN PANEL ROUTES
+| Authenticated Routes
 |--------------------------------------------------------------------------
 */
+Route::middleware('auth')->group(function () {
+    Route::view('/admin/dashboard', 'components.dashboard')->name('admin.dashboard');
 
-Route::view('/admin/dashboard','components.dashboard');
-Route::view('/admin/appointment-list','components.booking.booking-list');
-Route::view('/admin/appointment-list/detail','components.booking.booking-detail');
+    Route::view('/appointment/booking', 'components.booking.booking')->name('appointment.booking');
+
+    
+    Route::view('/admin/appointment-list', 'components.booking.booking-list')->name('admin.appointment.list');
+    Route::view('/admin/appointment-list/detail', 'components.booking.booking-detail')->name('admin.appointment.detail');
+});

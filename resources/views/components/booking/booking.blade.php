@@ -506,10 +506,10 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="ribbon">
                         BOOK AN APPOINTMENT
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
+{{--                        <i></i>--}}
+{{--                        <i></i>--}}
+{{--                        <i></i>--}}
+{{--                        <i></i>--}}
                     </div>
 
                     <!-- Property Listing Wizard -->
@@ -826,6 +826,8 @@
                                                 <option value="Section 179D Tax Deduction">Section 179D Tax Deduction</option>
                                                 <option value="Grant Services">Grant Services</option>
                                                 <option value="CFO Services">CFO Services</option>
+                                                <option value="CFO Services">Business Tax Credit</option>
+                                                <option value="CFO Services">Incentives Advisory</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-6">

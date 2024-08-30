@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 | Authenticated Routes
 |--------------------------------------------------------------------------
 */
-Route::view('/appointment/booking', 'components.booking.booking')->name('appointment.booking');
+// Route definition using the controller method
+Route::get('/appointment/booking', [BookingController::class, 'index'])->name('appointment.booking');
+Route::post('/booking/store', [BookingController::class, 'store']);
+
+// Route::view('/appointment/booking', 'components.booking.booking')->name('appointment.booking');
 Route::middleware('auth')->group(function () {
     Route::view('/admin/dashboard', 'components.dashboard')->name('admin.dashboard');
 

@@ -16,6 +16,7 @@
     <title>Appointment Booking | WeIncentivize</title>
 
     <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
@@ -137,10 +138,10 @@
         .week div {
             opacity: 0.5;
         }
-        .current-date {
+        /* .current-date {
             background-color: #058283;
             color: white !important;
-        }
+        } */
         .display-selected {
             margin-bottom: 10px;
             padding: 20px 20px;
@@ -194,7 +195,17 @@
             border-right-color: transparent;
             border-left-color: #6a6a6a;
         }
+        .btn.selected {
+        background-color: #058283;
+        color: white;
+        border: 1px solid #058283; /* Optional border */
+    }
 
+    .btn:disabled {
+        background-color: #e0e0e0; /* Disabled color */
+        color: #9e9e9e;
+        cursor: not-allowed;
+    }
         .ribbon i:nth-child(3), .ribbon i:last-child {
             width: 20px;
             bottom: -20px;
@@ -484,8 +495,20 @@
         }
 
 
-
-
+        #price-details {
+    display: block !important;
+    visibility: visible !important;
+}
+.selected-date {
+        background-color: #058283;
+        color: #fff !important;
+        border-radius: 50%;
+    }
+    .disabled {
+        color: #cccccc; /* Lighter color for past dates */
+        background-color: #f0f0f0; /* Light background to visually distinguish */
+        pointer-events: none; /* Prevent clicks */
+    }
     </style>
 
 </head>
@@ -567,6 +590,7 @@
                         </div>
                         <div class="bs-stepper-content">
                             <form id="wizard-property-listing-form" onSubmit="return false">
+                                @csrf 
                                 <!-- Personal Details -->
                                 <div id="personal-details" class="content">
                                     <div class="row g-6">
@@ -593,6 +617,8 @@
                                                     <div>Sa</div>
                                                 </div>
                                                 <div class="days"></div>
+                                                <p class="selected"></p> <!-- Add this line -->
+
                                             </div>
 
                                         <div class="col-12 d-flex justify-content-between">
@@ -785,11 +811,11 @@
                                                 id="plFirstName"
                                                 name="plFirstName"
                                                 class="form-control"
-                                                placeholder="John" />
+                                                placeholder="John"  required />
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="form-label" for="plLastName">Last Name</label>
-                                            <input type="text" id="plLastName" name="plLastName" class="form-control" placeholder="Doe" />
+                                            <input required type="text" id="plLastName" name="plLastName" class="form-control" placeholder="Doe" />
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="form-label" for="plEmail">Email</label>
@@ -798,7 +824,7 @@
                                                 id="plEmail"
                                                 name="plEmail"
                                                 class="form-control"
-                                                placeholder="john.doe@example.com" />
+                                                placeholder="john.doe@example.com" required />
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="form-label" for="plContact">Contact</label>
@@ -809,12 +835,13 @@
                                                     id="plContact"
                                                     name="plContact"
                                                     class="form-control contact-number-mask"
-                                                    placeholder="202 555 0111" />
+                                                    placeholder="202 555 0111" required />
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="form-label" for="plPropertyType">Select Service</label>
                                             <select
+                                            required
                                                 id="plPropertyType"
                                                 name="plPropertyType"
                                                 class="select2 form-select"
@@ -833,6 +860,7 @@
                                         <div class="col-sm-6">
                                             <label class="form-label" for="plZipCode">Zip Code</label>
                                             <input
+                                            required
                                                 type="number"
                                                 id="plZipCode"
                                                 name="plZipCode"
@@ -842,6 +870,7 @@
                                         <div class="col-sm-6">
                                             <label class="form-label" for="plCountry">Country</label>
                                             <select
+                                            required
                                                 id="plCountry"
                                                 name="plCountry"
                                                 class="select2 form-select"
@@ -876,6 +905,7 @@
                                         <div class="col-sm-6">
                                             <label class="form-label" for="plState">State</label>
                                             <input
+                                            required
                                                 type="text"
                                                 id="plState"
                                                 name="plState"
@@ -932,47 +962,51 @@
                                                 placeholder="12, Business Park"></textarea>
                                         </div>
                                         <div class="col-md-12">
-                                            <p class="mb-2 form-label">Are You Looking To</p>
-                                            <div style="display: grid;grid-template-columns: 1fr 1fr;">
-                                                <div class="form-check my-2 ms-2">
-                                                    <input
-                                                        class="form-check-input"
-                                                        type="radio"
-                                                        name="plPossessionStatus"
-                                                        id="plUnderConstruction"
-                                                    />
-                                                    <label class="form-check-label" for="plUnderConstruction">Schedule Consultation</label>
-                                                </div>
-                                                <div class="form-check my-2 ms-2">
-                                                    <input
-                                                        class="form-check-input"
-                                                        type="radio"
-                                                        name="plPossessionStatus"
-                                                        id="plReadyToMoveRadio" />
-                                                    <label class="form-check-label" for="plReadyToMoveRadio">Join Our Team</label>
-                                                </div>
-                                                <div class="form-check my-2 ms-2 ">
-                                                    <input
-                                                        class="form-check-input"
-                                                        type="radio"
-                                                        name="plTransectionType"
-                                                        id="plNewProperty"
-                                                    />
-                                                    <label class="form-check-label" for="plNewProperty">Inquire About Partnering</label>
-                                                </div>
-                                                <div class="form-check my-2 ms-2">
-                                                    <input
-                                                        class="form-check-input"
-                                                        type="radio"
-                                                        name="plTransectionType"
-                                                        id="plResaleProperty" />
-                                                    <label class="form-check-label" for="plResaleProperty">Learn More</label>
-                                                </div>
-                                            </div>
-                                        </div>
+    <p class="mb-2 form-label">Are You Looking To</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr;">
+        <div class="form-check my-2 ms-2">
+            <input
+                class="form-check-input"
+                type="radio"
+                name="plstatus"
+                id="plUnderConstruction"
+            />
+            <label class="form-check-label" for="plUnderConstruction">Schedule Consultation</label>
+        </div>
+        <div class="form-check my-2 ms-2">
+            <input
+                class="form-check-input"
+                type="radio"
+                name="plstatus"
+                id="plReadyToMoveRadio"
+            />
+            <label class="form-check-label" for="plReadyToMoveRadio">Join Our Team</label>
+        </div>
+        <div class="form-check my-2 ms-2">
+            <input
+                class="form-check-input"
+                type="radio"
+                name="plTransectionType"
+                id="plNewProperty"
+            />
+            <label class="form-check-label" for="plNewProperty">Inquire About Partnering</label>
+        </div>
+        <div class="form-check my-2 ms-2">
+            <input
+                class="form-check-input"
+                type="radio"
+                name="plTransectionType"
+                id="plResaleProperty"
+            />
+            <label class="form-check-label" for="plResaleProperty">Learn More</label>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="status" name="status">
                                         <div class="col-md-12 pt-5 pb-5">
                                             <div class="form-check my-2 ms-2">
-                                                <input class="form-check-input" type="checkbox" name="plOtherCharges" id="plOtherCharges" />
+                                                <input class="form-check-input" required type="checkbox" name="plOtherCharges" id="plOtherCharges" />
                                                 <label class="form-check-label" for="plOtherCharges">
                                                     By proceeding, you confirm that you have read and agree to <a href="">Terms of Use</a> & <a href=""> Privacy Notice.</a>
                                                 </label>
@@ -986,16 +1020,18 @@
                                                 <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-success btn-submit btn-next nxt-prev-btn">
+                                            <!-- <button class="btn btn-success btn-submit btn-next nxt-prev-btn">
                                                 <span class="align-middle d-sm-inline-block d-none me-sm-2">Submit</span>
                                                 <i class="ti ti-arrow-right ti-xs"></i>
-                                            </button>
+                                            </button> -->
+                                            <button id="socialMediaButton" class="btn btn-success btn-submit btn-next nxt-prev-btn">Save and Submit</button>
+
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Price Details -->
-                                <div id="price-details" class="content">
+                                <!-- <div id="price-details" class="content">
                                     <div class="row g-6">
                                         <div class="col-md-12 col-lg-12">
                                             <div class="card text-center">
@@ -1058,7 +1094,58 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+<!-- Price Details Section -->
+<div id="price-details" class="content">
+    <div class="row g-6" id="bookingDetails" style="display: none;"> <!-- Initially hidden -->
+        <div class="col-md-12 col-lg-12">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 class="card-title" style="font-weight: bold;">Appointment Booked Successfully!</h2>
+                    <p class="booking-text">
+                        Dear <span id="contactPersonGreeting">[Contact Name]</span>, <br>
+                        Thank you for scheduling a booking with us! We are excited to confirm your appointment and look forward to providing you with a great experience.
+                    </p>
+                    <h4 style="font-weight: 600; color: black;">
+                        Booking Confirmation:
+                    </h4>
+                    <div class="table-responsive pb-10">
+                        <table class="table table-bordered" style="text-align: left; border-color: #b3b3b3;">
+                            <tbody class="table-border-bottom-0">
+                                <tr>
+                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Booking ID</span></td>
+                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="bookingId">[Booking ID]</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Service Name</span></td>
+                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="serviceName">[Service Name]</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Date & Time</span></td>
+                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="dateTime">[Date and Time]</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Location</span></td>
+                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="location">[Location Address]</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Contact Person</span></td>
+                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="contactPerson">[Contact Name]</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Contact Number</span></td>
+                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="contactNumber">[Contact Number]</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="javascript:void(0)" class="btn w-50 btn-green nxt-prev-btn">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
 
                             </form>
                         </div>
@@ -1151,108 +1238,282 @@
 <!-- Page JS -->
 
 <script src="{{ asset('assets/js/wizard-ex-property-listing.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    let display = document.querySelector(".display");
-    let days = document.querySelector(".days");
-    let previous = document.querySelector(".left");
-    let next = document.querySelector(".right");
-    let selected = document.querySelector(".selected");
+    document.addEventListener("DOMContentLoaded", () => {
+        let display = document.querySelector(".display");
+        let days = document.querySelector(".days");
+        let previous = document.querySelector(".left");
+        let next = document.querySelector(".right");
+        let selectedDateElement = document.querySelector(".selected");
 
-    let date = new Date();
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        let selectedDate = null; // To track the currently selected date
+        const statusField = document.getElementById('status');
 
-    let year = date.getFullYear();
-    let month = date.getMonth();
+document.querySelectorAll('.form-check-input').forEach(radio => {
+    radio.addEventListener('change', (event) => {
+        const selectedRadio = event.target;
+        const label = document.querySelector(`label[for="${selectedRadio.id}"]`);
+        if (label) {
+            statusField.value = label.textContent.trim();
+            console.log('Selected Status:', statusField.value); // Debugging
+        }
+    });
+});
+        function displayCalendar() {
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const firstDayIndex = firstDay.getDay();
+            const numberOfDays = lastDay.getDate();
 
-    function displayCalendar() {
-        const firstDay = new Date(year, month, 1);
+            let formattedDate = date.toLocaleString("en-US", {
+                month: "long",
+                year: "numeric"
+            });
 
-        const lastDay = new Date(year, month + 1, 0);
+            display.innerHTML = `${formattedDate}`;
+            days.innerHTML = "";
 
-        const firstDayIndex = firstDay.getDay(); //4
+            // Fill initial empty days
+            for (let x = 1; x <= firstDayIndex; x++) {
+                const div = document.createElement("div");
+                days.appendChild(div);
+            }
 
-        const numberOfDays = lastDay.getDate(); //31
+            // Display days of the month
+            for (let i = 1; i <= numberOfDays; i++) {
+                let div = document.createElement("div");
+                let currentDate = new Date(year, month, i);
+                div.dataset.date = currentDate.toDateString();
+                div.innerHTML += i;
+                days.appendChild(div);
 
-        let formattedDate = date.toLocaleString("en-US", {
-            month: "long",
-            year: "numeric"
+                // Disable past dates
+                if (currentDate < new Date(new Date().setHours(0, 0, 0, 0))) {
+                    div.classList.add("disabled");
+                    div.style.pointerEvents = "none"; // Disable clicks on past dates
+                }
+
+                // Add special class to current date without highlighting it
+                if (
+                    currentDate.getFullYear() === new Date().getFullYear() &&
+                    currentDate.getMonth() === new Date().getMonth() &&
+                    currentDate.getDate() === new Date().getDate()
+                ) {
+                    div.classList.add("current-date");
+                }
+
+                // Highlight previously selected date
+                if (selectedDate && selectedDate.dataset.date === currentDate.toDateString()) {
+                    div.classList.add("selected-date");
+                }
+            }
+
+            // Disable 'previous' button if on the current month
+            previous.style.pointerEvents = (year === new Date().getFullYear() && month === new Date().getMonth()) ? "none" : "auto";
+
+            addDateSelectionHandler();
+        }
+
+        function addDateSelectionHandler() {
+            const dayElements = document.querySelectorAll(".days div:not(.disabled)");
+            dayElements.forEach((day) => {
+                day.addEventListener("click", (e) => {
+                    // Remove highlight from the previously selected date
+                    if (selectedDate) {
+                        selectedDate.classList.remove("selected-date");
+                    }
+
+                    // Highlight the newly selected date
+                    e.target.classList.add("selected-date");
+                    selectedDate = e.target; // Update the selectedDate to the new one
+
+                    // Display selected date
+                    const selectedDateStr = e.target.dataset.date;
+                    selectedDateElement.innerHTML = `Selected Date: ${selectedDateStr}`;
+                });
+            });
+        }
+
+        // Initial display of calendar and selection handler
+        displayCalendar();
+
+        // Navigate to the previous month
+        previous.addEventListener("click", () => {
+            if (month === 0) {
+                month = 11;
+                year -= 1;
+            } else {
+                month -= 1;
+            }
+
+            date.setMonth(month);
+            displayCalendar();
         });
 
-        display.innerHTML = `${formattedDate}`;
-
-        for (let x = 1; x <= firstDayIndex; x++) {
-            const div = document.createElement("div");
-            div.innerHTML += "";
-
-            days.appendChild(div);
-        }
-
-        for (let i = 1; i <= numberOfDays; i++) {
-            let div = document.createElement("div");
-            let currentDate = new Date(year, month, i);
-
-            div.dataset.date = currentDate.toDateString();
-
-            div.innerHTML += i;
-            days.appendChild(div);
-            if (
-                currentDate.getFullYear() === new Date().getFullYear() &&
-                currentDate.getMonth() === new Date().getMonth() &&
-                currentDate.getDate() === new Date().getDate()
-            ) {
-                div.classList.add("current-date");
+        // Navigate to the next month
+        next.addEventListener("click", () => {
+            if (month === 11) {
+                month = 0;
+                year += 1;
+            } else {
+                month += 1;
             }
-        }
+
+            date.setMonth(month);
+            displayCalendar();
+        });
+
+        // Time Slots Script
+        const timeSlotsContainer = document.querySelector(".d-flex.gap-4.flex-wrap.mt-4");
+const previousButton = document.querySelector(".btn-prev");
+const nextButton = document.querySelector(".btn-next");
+
+const timeSlots = [
+    "12:00am", "12:30am", "1:00am", "1:30am", "2:00am", "2:30am", "3:00am", "3:30am",
+    "4:00am", "4:30am", "5:00am", "5:30am", "6:00pm", "6:30pm", "7:00pm", "7:30pm",
+    "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm"
+];
+
+function timeToMinutes(time) {
+    const [hoursMinutes, period] = time.split(/(am|pm)/);
+    let [hours, minutes] = hoursMinutes.split(":").map(Number);
+    if (period === "pm" && hours < 12) hours += 12;
+    if (period === "am" && hours === 12) hours = 0;
+    return hours * 60 + minutes;
+}
+
+function getCurrentTimeIndex() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const period = hours >= 12 ? "pm" : "am";
+    const adjustedHours = hours % 12 || 12;
+    const currentTime = `${adjustedHours}:${minutes >= 30 ? '30' : '00'}${period}`;
+
+    return timeSlots.findIndex(time => timeToMinutes(time) >= timeToMinutes(currentTime));
+}
+
+function displayTimeSlots() {
+    timeSlotsContainer.innerHTML = "";
+
+    for (let i = 0; i < timeSlots.length; i++) {
+        let button = document.createElement("button");
+        button.type = "button";
+        button.className = "btn custom-btn-outline waves-effect";
+        button.textContent = timeSlots[i]; // Set text content directly
+        button.disabled = i < currentIndex; // Disable past times
+        button.addEventListener("click", () => handleTimeSelection(button));
+        timeSlotsContainer.appendChild(button);
     }
 
-    // Call the function to display the calendar
-    displayCalendar();
+    previousButton.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+}
 
-    previous.addEventListener("click", () => {
-        days.innerHTML = "";
-        selected.innerHTML = "";
+function handleTimeSelection(button) {
+    // Remove highlight from any previously selected button
+    const selectedButton = document.querySelector(".btn.selected");
+    if (selectedButton) {
+        selectedButton.classList.remove("selected");
+    }
 
-        if (month < 0) {
-            month = 11;
-            year = year - 1;
+    // Highlight the clicked button
+    button.classList.add("selected");
+
+    // Extract and clean the time value
+    const rawTimeValue = button.textContent.trim(); // Get and trim the text content
+
+    // Update formData with cleaned time value
+    formData.selectedTime = rawTimeValue;
+
+    console.log("Selected Time:", formData.selectedTime); // Debugging
+}
+
+function updateCurrentIndex(isNext) {
+    if (isNext) {
+        if (currentIndex + 1 < timeSlots.length) {
+            currentIndex += 1;
         }
-
-        month = month - 1;
-
-        date.setMonth(month);
-
-        displayCalendar();
-        displaySelected();
-    });
-
-    next.addEventListener("click", () => {
-        days.innerHTML = "";
-        selected.innerHTML = "";
-
-        if (month > 11) {
-            month = 0;
-            year = year + 1;
+    } else {
+        if (currentIndex - 1 >= 0) {
+            currentIndex -= 1;
         }
+    }
+    displayTimeSlots();
+}
 
-        month = month + 1;
-        date.setMonth(month);
+let currentIndex = getCurrentTimeIndex();
+let selectedTime = null; // To track the currently selected time
 
-        displayCalendar();
-        displaySelected();
-    });
+previousButton.addEventListener("click", () => {
+    updateCurrentIndex(false);
+});
 
-    function displaySelected() {
-        const dayElements = document.querySelectorAll(".days div");
-        dayElements.forEach((day) => {
-            day.addEventListener("click", (e) => {
-                const selectedDate = e.target.dataset.date;
-                selected.innerHTML = `Selected Date : ${selectedDate}`;
+nextButton.addEventListener("click", () => {
+    updateCurrentIndex(true);
+});
+
+displayTimeSlots();
+
+        // AJAX Form Submission Script
+        $('#socialMediaButton').on('click', function(e) {
+            e.preventDefault();
+
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            var formData = {
+    _token: csrfToken, // Include CSRF token
+    firstName: $('#plFirstName').val(),
+    lastName: $('#plLastName').val(),
+    email: $('#plEmail').val(),
+    contact: $('#plContact').val(),
+    propertyType: $('#plPropertyType').val(),
+    zipCode: $('#plZipCode').val(),
+    country: $('#plCountry').val(),
+    state: $('#plState').val(),
+    website: $('#plweb').val(),
+    businessName: $('#plbrand').val(),
+    address: $('#plAddress').val(),
+    status: $('input[name="plstatus"]:checked').val(),
+    otherCharges: $('#plOtherCharges').is(':checked'),
+    selectedDate: selectedDate ? selectedDate.dataset.date : null, // Ensure selectedDate is set
+    selectedTime: document.querySelector(".btn.selected") ? document.querySelector(".btn.selected").textContent : null // Ensure selectedTime is set
+};
+
+            console.log('Form Data:', formData);
+
+            $.ajax({
+                url: '/booking/store',
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    console.log('Response:', response);
+
+                    if (response.success) {
+                        $('#success').text(response.success ? "Yes" : "No");
+                        $('#bookingId').text(response.bookingId);
+                        $('#serviceName').text(response.serviceName);
+                        $('#dateTime').text(response.dateTime);
+                        $('#location').text(response.location || 'N/A');
+
+                        var contactPerson = response.firstName + " " + response.lastName;
+                        $('#contactPerson').text(contactPerson);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
             });
         });
-    }
-    displaySelected();
-
+    });
 </script>
+
+
+
+
 
 </body>
 </html>

@@ -46,6 +46,7 @@ class BookingController extends Controller
             'address' => 'nullable|string',
             'status' => 'nullable|string',
             'otherCharges' => 'nullable',
+            
         ]);
 
         // Create a new booking entry

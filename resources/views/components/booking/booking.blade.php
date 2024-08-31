@@ -617,7 +617,7 @@
                                                     <div>Sa</div>
                                                 </div>
                                                 <div class="days"></div>
-                                                <p class="selected"></p> <!-- Add this line -->
+                                                <p style="display: none;" class="selected" ></p> <!-- Add this line -->
 
                                             </div>
 
@@ -968,8 +968,9 @@
             <input
                 class="form-check-input"
                 type="radio"
-                name="plstatus"
+                name="status"
                 id="plUnderConstruction"
+                value="Schedule Consultation" 
             />
             <label class="form-check-label" for="plUnderConstruction">Schedule Consultation</label>
         </div>
@@ -977,8 +978,9 @@
             <input
                 class="form-check-input"
                 type="radio"
-                name="plstatus"
+                name="status"
                 id="plReadyToMoveRadio"
+                value="Join Our Team" 
             />
             <label class="form-check-label" for="plReadyToMoveRadio">Join Our Team</label>
         </div>
@@ -986,8 +988,9 @@
             <input
                 class="form-check-input"
                 type="radio"
-                name="plTransectionType"
+                name="status"
                 id="plNewProperty"
+                value="Inquire About Partnering"
             />
             <label class="form-check-label" for="plNewProperty">Inquire About Partnering</label>
         </div>
@@ -995,13 +998,15 @@
             <input
                 class="form-check-input"
                 type="radio"
-                name="plTransectionType"
+                name="status"
                 id="plResaleProperty"
+                value="Learn More" 
             />
             <label class="form-check-label" for="plResaleProperty">Learn More</label>
         </div>
     </div>
 </div>
+
 
 <input type="hidden" id="status" name="status">
                                         <div class="col-md-12 pt-5 pb-5">
@@ -1445,7 +1450,16 @@ function updateCurrentIndex(isNext) {
     }
     displayTimeSlots();
 }
-
+function getCustomerType(value) {
+    switch (value) {
+        case '1':
+            return 'New Customer';
+        case '2':
+            return 'Existing Customer';
+        default:
+            return 'Unknown';
+    }
+}
 let currentIndex = getCurrentTimeIndex();
 let selectedTime = null; // To track the currently selected time
 
@@ -1460,6 +1474,9 @@ nextButton.addEventListener("click", () => {
 displayTimeSlots();
 
         // AJAX Form Submission Script
+
+
+        
         $('#socialMediaButton').on('click', function(e) {
             e.preventDefault();
 
@@ -1477,11 +1494,14 @@ displayTimeSlots();
     website: $('#plweb').val(),
     businessName: $('#plbrand').val(),
     address: $('#plAddress').val(),
-    status: $('input[name="plstatus"]:checked').val(),
+    status: $('input[name="status"]:checked').val(), // Fetch the selected radio button's value
     otherCharges: $('#plOtherCharges').is(':checked'),
     selectedDate: selectedDate ? selectedDate.dataset.date : null, // Ensure selectedDate is set
-    selectedTime: document.querySelector(".btn.selected") ? document.querySelector(".btn.selected").textContent : null // Ensure selectedTime is set
+    selectedTime: document.querySelector(".btn.selected") ? document.querySelector(".btn.selected").textContent : null, // Ensure selectedTime is set
+    plPropertySaleRent: getCustomerType($('input[name="plPropertySaleRent"]:checked').val()) // Map the radio button value
+
 };
+
 
             console.log('Form Data:', formData);
 

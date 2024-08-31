@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking; // Ensure the path is correct
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CustomerBookingMail;
+use App\Mail\AdminBookingMail;
 class BookingController extends Controller
 {
     /**
@@ -51,8 +53,19 @@ class BookingController extends Controller
 
         // Create a new booking entry
         $booking = Booking::create($request->all());
+     
 
-        // Return a response (e.g., success message)
+        $email = $validated['email']; // customer's email address
+
+
+        // Send email to customer with booking details
+
+        Mail::to($email)->send(new CustomerBookingMail($booking));
+
+
+        // Send email to admin with booking details
+        Mail::to('manibahi321@gmail.com')->send(new AdminBookingMail($booking));
+        
         return response()->json([
             'success' => true,
             'bookingId' => $booking->id,
@@ -64,8 +77,8 @@ class BookingController extends Controller
         ]);    } catch (\Exception $e) {
         // Handle exceptions
         return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
-}
     /**
      * Display the specified resource.
      */

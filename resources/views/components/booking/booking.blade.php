@@ -921,10 +921,14 @@
                                                 <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <button class="btn btn-green btn-next nxt-prev-btn">
+                                            <button class="btn btn-green btn-next btn-next-form nxt-prev-btn" id="nextButtonForm">
                                                 <span class="align-middle d-sm-inline-block d-none me-sm-2">Next</span>
                                                 <i class="ti ti-arrow-right ti-xs"></i>
                                             </button>
+                                            <!-- <button  class="btn btn-green btn-next-form nxt-prev-btn" id="nextButtonForm">
+                                                <span class="align-middle d-sm-inline-block d-none me-sm-2">Next</span>
+                                                <i class="ti ti-arrow-right ti-xs"></i>
+                                            </button> -->
                                         </div>
 
                                     </div>
@@ -1008,7 +1012,7 @@
 </div>
 
 
-<input type="hidden" id="status" name="status">
+                                        <input type="hidden" id="status" name="status">
                                         <div class="col-md-12 pt-5 pb-5">
                                             <div class="form-check my-2 ms-2">
                                                 <input class="form-check-input" required type="checkbox" name="plOtherCharges" id="plOtherCharges" />
@@ -1025,10 +1029,7 @@
                                                 <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                             </button>
-                                            <!-- <button class="btn btn-success btn-submit btn-next nxt-prev-btn">
-                                                <span class="align-middle d-sm-inline-block d-none me-sm-2">Submit</span>
-                                                <i class="ti ti-arrow-right ti-xs"></i>
-                                            </button> -->
+    
                                             <button id="socialMediaButton" class="btn btn-success btn-submit btn-next nxt-prev-btn">Save and Submit</button>
 
                                         </div>
@@ -1108,7 +1109,7 @@
                 <div class="card-body">
                     <h2 class="card-title" style="font-weight: bold;">Appointment Booked Successfully!</h2>
                     <p class="booking-text">
-                        Dear <span id="contactPersonGreeting">[Contact Name]</span>, <br>
+                        Dear <span id="contactPersonMain">[Contact Name]</span>, <br>
                         Thank you for scheduling a booking with us! We are excited to confirm your appointment and look forward to providing you with a great experience.
                     </p>
                     <h4 style="font-weight: 600; color: black;">
@@ -1258,17 +1259,28 @@
         let month = date.getMonth();
         let selectedDate = null; // To track the currently selected date
         const statusField = document.getElementById('status');
+        const checkbox = document.getElementById('plOtherCharges');
+    const submitButton = document.getElementById('socialMediaButton');
 
-document.querySelectorAll('.form-check-input').forEach(radio => {
-    radio.addEventListener('change', (event) => {
-        const selectedRadio = event.target;
-        const label = document.querySelector(`label[for="${selectedRadio.id}"]`);
-        if (label) {
-            statusField.value = label.textContent.trim();
-            console.log('Selected Status:', statusField.value); // Debugging
-        }
-    });
-});
+    function toggleSubmitButton() {
+        submitButton.disabled = !checkbox.checked;
+    }
+
+    // Initial check in case the checkbox is already checked
+    toggleSubmitButton();
+
+    // Add event listener to checkbox
+    checkbox.addEventListener('change', toggleSubmitButton);
+        document.querySelectorAll('.form-check-input').forEach(radio => {
+            radio.addEventListener('change', (event) => {
+                const selectedRadio = event.target;
+                const label = document.querySelector(`label[for="${selectedRadio.id}"]`);
+                if (label) {
+                    statusField.value = label.textContent.trim();
+                    console.log('Selected Status:', statusField.value); // Debugging
+                }
+            });
+        });
         function displayCalendar() {
             const firstDay = new Date(year, month, 1);
             const lastDay = new Date(year, month + 1, 0);
@@ -1372,162 +1384,198 @@ document.querySelectorAll('.form-check-input').forEach(radio => {
             date.setMonth(month);
             displayCalendar();
         });
-
+        
         // Time Slots Script
         const timeSlotsContainer = document.querySelector(".d-flex.gap-4.flex-wrap.mt-4");
-const previousButton = document.querySelector(".btn-prev");
-const nextButton = document.querySelector(".btn-next");
+        const previousButton = document.querySelector(".btn-prev");
+        const nextButton = document.querySelector(".btn-next");
+        const nextButtonForm = document.querySelector(".btn-next-form");
 
-const timeSlots = [
-    "12:00am", "12:30am", "1:00am", "1:30am", "2:00am", "2:30am", "3:00am", "3:30am",
-    "4:00am", "4:30am", "5:00am", "5:30am", "6:00pm", "6:30pm", "7:00pm", "7:30pm",
-    "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm"
-];
+        const timeSlots = [
+            "12:00am", "12:30am", "1:00am", "1:30am", "2:00am", "2:30am", "3:00am", "3:30am",
+            "4:00am", "4:30am", "5:00am", "5:30am", "6:00pm", "6:30pm", "7:00pm", "7:30pm",
+            "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm"
+        ];
 
-function timeToMinutes(time) {
-    const [hoursMinutes, period] = time.split(/(am|pm)/);
-    let [hours, minutes] = hoursMinutes.split(":").map(Number);
-    if (period === "pm" && hours < 12) hours += 12;
-    if (period === "am" && hours === 12) hours = 0;
-    return hours * 60 + minutes;
-}
-
-function getCurrentTimeIndex() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const period = hours >= 12 ? "pm" : "am";
-    const adjustedHours = hours % 12 || 12;
-    const currentTime = `${adjustedHours}:${minutes >= 30 ? '30' : '00'}${period}`;
-
-    return timeSlots.findIndex(time => timeToMinutes(time) >= timeToMinutes(currentTime));
-}
-
-function displayTimeSlots() {
-    timeSlotsContainer.innerHTML = "";
-
-    for (let i = 0; i < timeSlots.length; i++) {
-        let button = document.createElement("button");
-        button.type = "button";
-        button.className = "btn custom-btn-outline waves-effect";
-        button.textContent = timeSlots[i]; // Set text content directly
-        button.disabled = i < currentIndex; // Disable past times
-        button.addEventListener("click", () => handleTimeSelection(button));
-        timeSlotsContainer.appendChild(button);
-    }
-
-    previousButton.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
-}
-
-function handleTimeSelection(button) {
-    // Remove highlight from any previously selected button
-    const selectedButton = document.querySelector(".btn.selected");
-    if (selectedButton) {
-        selectedButton.classList.remove("selected");
-    }
-
-    // Highlight the clicked button
-    button.classList.add("selected");
-
-    // Extract and clean the time value
-    const rawTimeValue = button.textContent.trim(); // Get and trim the text content
-
-    // Update formData with cleaned time value
-    formData.selectedTime = rawTimeValue;
-
-    console.log("Selected Time:", formData.selectedTime); // Debugging
-}
-
-function updateCurrentIndex(isNext) {
-    if (isNext) {
-        if (currentIndex + 1 < timeSlots.length) {
-            currentIndex += 1;
+        function timeToMinutes(time) {
+            const [hoursMinutes, period] = time.split(/(am|pm)/);
+            let [hours, minutes] = hoursMinutes.split(":").map(Number);
+            if (period === "pm" && hours < 12) hours += 12;
+            if (period === "am" && hours === 12) hours = 0;
+            return hours * 60 + minutes;
         }
-    } else {
-        if (currentIndex - 1 >= 0) {
-            currentIndex -= 1;
+
+        function getCurrentTimeIndex() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const period = hours >= 12 ? "pm" : "am";
+            const adjustedHours = hours % 12 || 12;
+            const currentTime = `${adjustedHours}:${minutes >= 30 ? '30' : '00'}${period}`;
+
+            return timeSlots.findIndex(time => timeToMinutes(time) >= timeToMinutes(currentTime));
         }
-    }
-    displayTimeSlots();
-}
-function getCustomerType(value) {
-    switch (value) {
-        case '1':
-            return 'New Customer';
-        case '2':
-            return 'Existing Customer';
-        default:
-            return 'Unknown';
-    }
-}
-let currentIndex = getCurrentTimeIndex();
-let selectedTime = null; // To track the currently selected time
 
-previousButton.addEventListener("click", () => {
-    updateCurrentIndex(false);
-});
+        function displayTimeSlots() {
+            timeSlotsContainer.innerHTML = "";
 
-nextButton.addEventListener("click", () => {
-    updateCurrentIndex(true);
-});
+            for (let i = 0; i < timeSlots.length; i++) {
+                let button = document.createElement("button");
+                button.type = "button";
+                button.className = "btn custom-btn-outline waves-effect";
+                button.textContent = timeSlots[i]; // Set text content directly
+                button.disabled = i < currentIndex; // Disable past times
+                button.addEventListener("click", () => handleTimeSelection(button));
+                timeSlotsContainer.appendChild(button);
+            }
 
-displayTimeSlots();
+            previousButton.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+        }
+
+        function handleTimeSelection(button) {
+            // Remove highlight from any previously selected button
+            const selectedButton = document.querySelector(".btn.selected");
+            if (selectedButton) {
+                selectedButton.classList.remove("selected");
+            }
+
+            // Highlight the clicked button
+            button.classList.add("selected");
+
+            // Extract and clean the time value
+            const rawTimeValue = button.textContent.trim(); // Get and trim the text content
+
+            // Update formData with cleaned time value
+            formData.selectedTime = rawTimeValue;
+
+            console.log("Selected Time:", formData.selectedTime); // Debugging
+        }
+
+        function updateCurrentIndex(isNext) {
+            if (isNext) {
+                if (currentIndex + 1 < timeSlots.length) {
+                    currentIndex += 1;
+                }
+            } else {
+                if (currentIndex - 1 >= 0) {
+                    currentIndex -= 1;
+                }
+            }
+            displayTimeSlots();
+        }
+        function getCustomerType(value) {
+            switch (value) {
+                case '1':
+                    return 'New Customer';
+                case '2':
+                    return 'Existing Customer';
+                default:
+                    return 'Unknown';
+            }
+        }
+            // Function to validate form fields
+            function validateFormFields() {
+                var firstName = document.getElementById('plFirstName').value.trim();
+                var lastName = document.getElementById('plLastName').value.trim();
+                var email = document.getElementById('plEmail').value.trim();
+                var contact = document.getElementById('plContact').value.trim();
+                var propertyType = document.getElementById('plPropertyType').value.trim();
+                var zipCode = document.getElementById('plZipCode').value.trim();
+                var country = document.getElementById('plCountry').value.trim();
+                var state = document.getElementById('plState').value.trim();
+
+                // Return true if all fields are filled
+                return firstName && lastName && email && contact && propertyType && zipCode && country && state;
+            }
+
+
+
+        let currentIndex = getCurrentTimeIndex();
+        let selectedTime = null; // To track the currently selected time
+
+        previousButton.addEventListener("click", () => {
+            updateCurrentIndex(false);
+        });
+
+        nextButton.addEventListener("click", () => {
+            updateCurrentIndex(true);
+        });
+        
+    //    if (nextButtonForm) {
+    //     nextButtonForm.addEventListener("click", (event) => {
+    //         // Check if the form fields are valid
+    //         if (validateFormFields()) {
+    //             // Perform the action if valid
+    //             updateCurrentIndex(true); // Replace this with the appropriate function if needed
+    //         } else {
+    //             event.preventDefault(); // Prevent default action if validation fails
+    //             alert("Please fill out all required fields."); // Optionally, show an error message
+    //         }
+    //     });
+    // }
+        displayTimeSlots();
 
         // AJAX Form Submission Script
 
 
         
         $('#socialMediaButton').on('click', function(e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            var formData = {
-    _token: csrfToken, // Include CSRF token
-    firstName: $('#plFirstName').val(),
-    lastName: $('#plLastName').val(),
-    email: $('#plEmail').val(),
-    contact: $('#plContact').val(),
-    propertyType: $('#plPropertyType').val(),
-    zipCode: $('#plZipCode').val(),
-    country: $('#plCountry').val(),
-    state: $('#plState').val(),
-    website: $('#plweb').val(),
-    businessName: $('#plbrand').val(),
-    address: $('#plAddress').val(),
-    status: $('input[name="status"]:checked').val(), // Fetch the selected radio button's value
-    otherCharges: $('#plOtherCharges').is(':checked'),
-    selectedDate: selectedDate ? selectedDate.dataset.date : null, // Ensure selectedDate is set
-    selectedTime: document.querySelector(".btn.selected") ? document.querySelector(".btn.selected").textContent : null, // Ensure selectedTime is set
-    plPropertySaleRent: getCustomerType($('input[name="plPropertySaleRent"]:checked').val()) // Map the radio button value
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    var formData = {
+        _token: csrfToken, // Include CSRF token
+        firstName: $('#plFirstName').val(),
+        lastName: $('#plLastName').val(),
+        email: $('#plEmail').val(),
+        contact: $('#plContact').val(),
+        propertyType: $('#plPropertyType').val(),
+        zipCode: $('#plZipCode').val(),
+        country: $('#plCountry').val(),
+        state: $('#plState').val(),
+        website: $('#plweb').val(),
+        businessName: $('#plbrand').val(),
+        address: $('#plAddress').val(),
+        status: $('input[name="status"]:checked').val(), // Fetch the selected radio button's value
+        otherCharges: $('#plOtherCharges').is(':checked') ? 'Yes' : 'No', // Convert boolean to string
+        selectedDate: selectedDate ? selectedDate.dataset.date : null, // Ensure selectedDate is set
+        selectedTime: document.querySelector(".btn.selected") ? document.querySelector(".btn.selected").textContent : null, // Ensure selectedTime is set
+        plPropertySaleRent: getCustomerType($('input[name="plPropertySaleRent"]:checked').val()) // Map the radio button value
+    };
 
-};
+    console.log('Form Data:', formData);
 
+    $.ajax({
+        url: '/booking/store',
+        method: 'POST',
+        data: formData,
+        success: function(response) {
+            console.log('Response:', response);
 
-            console.log('Form Data:', formData);
+            if (response.success) {
+                // Update the booking details section
+                $('#bookingId').text(response.bookingId);
+                $('#serviceName').text(response.serviceName);
+                $('#dateTime').text(response.dateTime);
+                $('#location').text(response.location || 'N/A'); // Use 'N/A' if location is null
+                $('#contactPerson').text(response.contactPerson);
+                $('#contactPersonMain').text(response.contactPerson);
+                $('#contactNumber').text(response.contactNumber);
 
-            $.ajax({
-                url: '/booking/store',
-                method: 'POST',
-                data: formData,
-                success: function(response) {
-                    console.log('Response:', response);
+                // Show the booking details section
+                $('#bookingDetails').show();
+            } else {
+                // Handle booking failure (if needed)
+                $('#success').text("Booking failed. Please try again.");
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            $('#success').text("An error occurred. Please try again.");
+        }
+    });
+});
 
-                    if (response.success) {
-                        $('#success').text(response.success ? "Yes" : "No");
-                        $('#bookingId').text(response.bookingId);
-                        $('#serviceName').text(response.serviceName);
-                        $('#dateTime').text(response.dateTime);
-                        $('#location').text(response.location || 'N/A');
-
-                        var contactPerson = response.firstName + " " + response.lastName;
-                        $('#contactPerson').text(contactPerson);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                }
-            });
-        });
     });
 </script>
 

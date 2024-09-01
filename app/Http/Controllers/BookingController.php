@@ -60,11 +60,11 @@ class BookingController extends Controller
 
         // Send email to customer with booking details
 
-        Mail::to($email)->send(new CustomerBookingMail($booking));
+        // Mail::to($email)->send(new CustomerBookingMail($booking));
 
 
         // Send email to admin with booking details
-        Mail::to('manibahi321@gmail.com')->send(new AdminBookingMail($booking));
+        // Mail::to('manibahi321@gmail.com')->send(new AdminBookingMail($booking));
         
         return response()->json([
             'success' => true,
@@ -74,7 +74,8 @@ class BookingController extends Controller
             'location' => $booking->address,
             'contactPerson' => $booking->firstName . ' ' . $booking->lastName,
             'contactNumber' => $booking->contact,
-        ]);    } catch (\Exception $e) {
+        ]);   
+     } catch (\Exception $e) {
         // Handle exceptions
         return response()->json(['error' => $e->getMessage()], 500);
         }

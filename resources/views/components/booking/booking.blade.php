@@ -1036,121 +1036,56 @@
                                     </div>
                                 </div>
 
-                                <!-- Price Details -->
-                                <!-- <div id="price-details" class="content">
-                                    <div class="row g-6">
+                                <!-- Price Details Section -->
+                                <div id="price-details" class="content">
+                                    <div class="row g-6" id="bookingDetails" style="display: none;"> <!-- Initially hidden -->
                                         <div class="col-md-12 col-lg-12">
                                             <div class="card text-center">
                                                 <div class="card-body">
                                                     <h2 class="card-title" style="font-weight: bold;">Appointment Booked Successfully!</h2>
                                                     <p class="booking-text">
-                                                        Dear Abdul Rehman Khalid, <br>
+                                                        Dear <span id="contactPersonMain">[Contact Name]</span>, <br>
                                                         Thank you for scheduling a booking with us! We are excited to confirm your appointment and look forward to providing you with a great experience.
                                                     </p>
-                                                    <h4 style="font-weight: 600;color: black;">
+                                                    <h4 style="font-weight: 600; color: black;">
                                                         Booking Confirmation:
                                                     </h4>
                                                     <div class="table-responsive pb-10">
-                                                        <table class="table table-bordered" style="text-align: left;border-color: #b3b3b3;">
+                                                        <table class="table table-bordered" style="text-align: left; border-color: #b3b3b3;">
                                                             <tbody class="table-border-bottom-0">
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fw-bold" style="font-weight: bold;color: black;font-size: 20px;width: 25%;">Booking ID</span>
-                                                                </td>
-                                                                <td style="font-size: 20px;color: black;font-weight: 400;width: 75%;">Albert Cook</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fw-bold" style="font-weight: bold;color: black;font-size: 20px;width: 25%;">Service Name</span>
-                                                                </td>
-                                                                <td style="font-size: 20px;color: black;font-weight: 400;width: 75%;">WI-11009</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fw-bold" style="font-weight: bold;color: black;font-size: 20px;width: 25%;">Date & Time</span>
-                                                                </td>
-                                                                <td style="font-size: 20px;color: black;font-weight: 400;width: 75%;">[Date and Time]</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fw-bold" style="font-weight: bold;color: black;font-size: 20px;width: 25%;">Location</span>
-                                                                </td>
-                                                                <td style="font-size: 20px;color: black;font-weight: 400;width: 75%;">[Location Address]</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fw-bold" style="font-weight: bold;color: black;font-size: 20px;width: 25%;">Contact Person</span>
-                                                                </td>
-                                                                <td style="font-size: 20px;color: black;font-weight: 400;width: 75%;">[Contact Name]</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fw-bold" style="font-weight: bold;color: black;font-size: 20px;width: 25%;">Contact Number</span>
-                                                                </td>
-                                                                <td style="font-size: 20px;color: black;font-weight: 400;width: 75%;">[Contact Number]</td>
-                                                            </tr>
-
-
+                                                                <tr>
+                                                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Booking ID</span></td>
+                                                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="bookingId">[Booking ID]</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Service Name</span></td>
+                                                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="serviceName">[Service Name]</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Date & Time</span></td>
+                                                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="dateTime">[Date and Time]</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Location</span></td>
+                                                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="location">[Location Address]</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Contact Person</span></td>
+                                                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="contactPerson">[Contact Name]</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Contact Number</span></td>
+                                                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="contactNumber">[Contact Number]</span></td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                     <a href="javascript:void(0)" class="btn w-50 btn-green nxt-prev-btn">Go Back</a>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
-<!-- Price Details Section -->
-<div id="price-details" class="content">
-    <div class="row g-6" id="bookingDetails" style="display: none;"> <!-- Initially hidden -->
-        <div class="col-md-12 col-lg-12">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h2 class="card-title" style="font-weight: bold;">Appointment Booked Successfully!</h2>
-                    <p class="booking-text">
-                        Dear <span id="contactPersonMain">[Contact Name]</span>, <br>
-                        Thank you for scheduling a booking with us! We are excited to confirm your appointment and look forward to providing you with a great experience.
-                    </p>
-                    <h4 style="font-weight: 600; color: black;">
-                        Booking Confirmation:
-                    </h4>
-                    <div class="table-responsive pb-10">
-                        <table class="table table-bordered" style="text-align: left; border-color: #b3b3b3;">
-                            <tbody class="table-border-bottom-0">
-                                <tr>
-                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Booking ID</span></td>
-                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="bookingId">[Booking ID]</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Service Name</span></td>
-                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="serviceName">[Service Name]</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Date & Time</span></td>
-                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="dateTime">[Date and Time]</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Location</span></td>
-                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="location">[Location Address]</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Contact Person</span></td>
-                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="contactPerson">[Contact Name]</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">Contact Number</span></td>
-                                    <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;"><span id="contactNumber">[Contact Number]</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <a href="javascript:void(0)" class="btn w-50 btn-green nxt-prev-btn">Go Back</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>    
+                                </div>    
 
 
                             </form>
@@ -1501,18 +1436,18 @@
             updateCurrentIndex(true);
         });
         
-    //    if (nextButtonForm) {
-    //     nextButtonForm.addEventListener("click", (event) => {
-    //         // Check if the form fields are valid
-    //         if (validateFormFields()) {
-    //             // Perform the action if valid
-    //             updateCurrentIndex(true); // Replace this with the appropriate function if needed
-    //         } else {
-    //             event.preventDefault(); // Prevent default action if validation fails
-    //             alert("Please fill out all required fields."); // Optionally, show an error message
-    //         }
-    //     });
-    // }
+       if (nextButtonForm) {
+        nextButtonForm.addEventListener("click", (event) => {
+            // Check if the form fields are valid
+            if (validateFormFields()) {
+                // Perform the action if valid
+                updateCurrentIndex(true); // Replace this with the appropriate function if needed
+            } else {
+                event.preventDefault(); // Prevent default action if validation fails
+                alert("Please fill out all required fields."); // Optionally, show an error message
+            }
+        });
+    }
         displayTimeSlots();
 
         // AJAX Form Submission Script

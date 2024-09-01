@@ -17,7 +17,7 @@ class BookingController extends Controller
         return view('components.booking.booking');
 
     }
-   
+
     /**
      * Show the form for creating a new resource.
      */
@@ -48,24 +48,24 @@ class BookingController extends Controller
             'address' => 'nullable|string',
             'status' => 'nullable|string',
             'otherCharges' => 'nullable',
-            
+
         ]);
 
         // Create a new booking entry
         $booking = Booking::create($request->all());
-     
+
 
         $email = $validated['email']; // customer's email address
 
 
         // Send email to customer with booking details
 
-        // Mail::to($email)->send(new CustomerBookingMail($booking));
+        Mail::to($email)->send(new CustomerBookingMail($booking));
 
 
         // Send email to admin with booking details
-        // Mail::to('manibahi321@gmail.com')->send(new AdminBookingMail($booking));
-        
+        Mail::to('manibahi321@gmail.com')->send(new AdminBookingMail($booking));
+
         return response()->json([
             'success' => true,
             'bookingId' => $booking->id,
@@ -74,7 +74,7 @@ class BookingController extends Controller
             'location' => $booking->address,
             'contactPerson' => $booking->firstName . ' ' . $booking->lastName,
             'contactNumber' => $booking->contact,
-        ]);   
+        ]);
      } catch (\Exception $e) {
         // Handle exceptions
         return response()->json(['error' => $e->getMessage()], 500);

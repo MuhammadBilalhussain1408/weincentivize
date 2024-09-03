@@ -26,7 +26,8 @@
 <!-- Page JS -->
 <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 <script src="{{ asset('assets/js/tables-datatables-basic.js') }}"></script>
-
+<script src="{{ asset('assets/vendor/libs/toastr/toastr.js') }}"></script>
+<script src="{{ asset('assets/js/ui-toasts.js') }}"></script>
 
 
 

@@ -46,6 +46,9 @@
 
 <!-- Page CSS -->
 <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-advance.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/toastr/toastr.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/spinkit/spinkit.css') }}" />
 
 <!-- Helpers -->
 <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>

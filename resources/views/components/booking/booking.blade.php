@@ -46,6 +46,9 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}" />
 
     <!-- Page CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/toastr/toastr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/spinkit/spinkit.css') }}" />
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
@@ -1311,6 +1314,8 @@
     <script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/toastr/toastr.js') }}"></script>
+    <script src="{{ asset('assets/js/ui-toasts.js') }}"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

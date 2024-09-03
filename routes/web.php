@@ -42,3 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::view('/admin/appointment-list', 'components.booking.booking-list')->name('admin.appointment.list');
     Route::view('/admin/appointment-list/detail', 'components.booking.booking-detail')->name('admin.appointment.detail');
 });
+
+
+Route::view('/bilal','components.bilal');

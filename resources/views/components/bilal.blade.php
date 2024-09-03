@@ -78,7 +78,7 @@
                 <div class="row py-sm-6 gy-3 gy-sm-0">
                     <div class="col">
                         <!-- Plane -->
-                        <div class="sk-plane sk-primary" style="width: 50px;height: 50px;"></div>
+                        <div class="sk-plane sk-primary" style="width: 100px; height: 100px;"></div>
                     </div>
                 </div>
             </div>

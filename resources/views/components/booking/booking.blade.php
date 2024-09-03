@@ -651,6 +651,7 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
+
                     <!-- Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y">
@@ -663,7 +664,19 @@
                         </div>
 
                         <!-- Property Listing Wizard -->
-                        <div id="wizard-property-listing" class="bs-stepper vertical mt-2">
+                        <div class="d-none" id="loader">
+                            <div class="d-flex justify-content-center text-center" >
+                                <div class="row py-sm-6 gy-3 gy-sm-0 position-absolute">
+                                    <div class="col">
+                                        <!-- Plane -->
+                                        <div class="sk-plane sk-primary" style="width: 100px; height: 100px;"></div>
+                                        <span>Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="wizard-property-listing" class="bs-stepper vertical mt-2 ">
+
                             <div class="bs-stepper-header border-end">
                                 <a href="javascript:void(0);" class="app-brand-link">
                                     <img src="{{ asset('assets/abr/logo.png') }}" width="250">
@@ -878,7 +891,8 @@
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
-                                                <button type="button" class="btn btn-green btn-next nxt-prev-btn" id="timeNextBtn" disabled>
+                                                <button type="button" class="btn btn-green btn-next nxt-prev-btn"
+                                                    id="timeNextBtn" disabled>
                                                     <span
                                                         class="align-middle d-sm-inline-block d-none me-sm-2">Next</span>
                                                     <i class="ti ti-arrow-right ti-xs"></i>
@@ -1231,8 +1245,10 @@
 
 
                                 </form>
+
                             </div>
                         </div>
+
                         <!--/ Property Listing Wizard -->
                     </div>
                     <!-- / Content -->
@@ -1276,6 +1292,7 @@
                     <div class="content-backdrop fade"></div>
                 </div>
                 <!-- Content wrapper -->
+
             </div>
             <!-- / Layout page -->
 
@@ -1287,7 +1304,6 @@
         <!-- Drag Target Area To SlideIn Menu On Small Screens -->
         <div class="drag-target"></div>
     </div>
-    <!-- / Layout wrapper -->
 
     <!-- Core JS -->
     <!-- buiassets/vendor/js/core.js -->
@@ -1324,6 +1340,20 @@
 
     <script src="{{ asset('assets/js/wizard-ex-property-listing.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        toastr.options = {
+            maxOpened: 1,
+            autoDismiss: true,
+            closeButton: true,
+            debug: true,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            preventDuplicates: false,
+            onclick: null,
+            rtl: isRtl
+        };
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -1591,8 +1621,8 @@
                 nextButtonForm.addEventListener("click", (event) => {
                     // Check if the form fields are valid
                     // if (validateFormFields()) {
-                        // Perform the action if valid
-                        updateCurrentIndex(true); // Replace this with the appropriate function if needed
+                    // Perform the action if valid
+                    updateCurrentIndex(true); // Replace this with the appropriate function if needed
                     // } else {
                     //     event.preventDefault(); // Prevent default action if validation fails
                     //     alert("Please fill out all required fields."); // Optionally, show an error message
@@ -1607,7 +1637,7 @@
 
             $('#socialMediaButton').on('click', function(e) {
                 e.preventDefault();
-
+                showloader()
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
                 var formData = {
                     _token: csrfToken, // Include CSRF token
@@ -1644,6 +1674,7 @@
                         console.log('Response:', response);
 
                         if (response.success) {
+                            toastr.success('Your Booking Added Successfully');
                             // Update the booking details section
                             $('#bookingId').text(response.bookingId);
                             $('#serviceName').text(response.serviceName);
@@ -1658,12 +1689,17 @@
                             $('#bookingDetails').show();
                         } else {
                             // Handle booking failure (if needed)
-                            $('#success').text("Booking failed. Please try again.");
+                            toastr.error('Booking failed. Please try again.');
+                            // $('#success').text("Booking failed. Please try again.");
                         }
+                        hideloader()
                     },
                     error: function(xhr, status, error) {
                         console.error('Error:', error);
-                        $('#success').text("An error occurred. Please try again.");
+                        // $('#success').text("An error occurred. Please try again.");
+                        toastr.error('An error occurred. Please try again.');
+                        hideloader()
+
                     }
                 });
             });
@@ -1685,6 +1721,7 @@
                 })
             }
             enableCalendarBtn()
+
             function enableDateBtn() {
                 // Select the div with the data-date attribute
                 const dateDiv = document.querySelectorAll('.timeBtn');
@@ -1702,6 +1739,15 @@
             }
             enableDateBtn()
         });
+
+        function showloader(){
+            $('#wizard-property-listing').addClass('d-none');
+            $('#loader').removeClass('d-none')
+        }
+        function hideloader(){
+            $('#wizard-property-listing').removeClass('d-none');
+            $('#loader').addClass('d-none')
+        }
     </script>
 
 </body>

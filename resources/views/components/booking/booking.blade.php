@@ -571,6 +571,42 @@
             list-style: none;
         }
 
+        #price-details {
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .selected-date {
+            background-color: #058283;
+            color: #fff !important;
+            border-radius: 50%;
+        }
+
+        .disabled {
+            color: #cccccc;
+            /* Lighter color for past dates */
+            background-color: #f0f0f0;
+            /* Light background to visually distinguish */
+            pointer-events: none;
+            /* Prevent clicks */
+        }
+        #loader {
+            /* display: none; */
+            /* position: fixed; */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            font-size: 24px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        /*MOBILE DEVICES CSS START*/
+
         @media only screen and (min-width: 992px) and (max-width: 1199px),
         only screen and (min-width: 768px) and (max-width: 991px),
         (max-width: 767px) {
@@ -616,40 +652,7 @@
             }
         }
 
-
-        #price-details {
-            display: block !important;
-            visibility: visible !important;
-        }
-
-        .selected-date {
-            background-color: #058283;
-            color: #fff !important;
-            border-radius: 50%;
-        }
-
-        .disabled {
-            color: #cccccc;
-            /* Lighter color for past dates */
-            background-color: #f0f0f0;
-            /* Light background to visually distinguish */
-            pointer-events: none;
-            /* Prevent clicks */
-        }
-        #loader {
-            /* display: none; */
-            /* position: fixed; */
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-            font-size: 24px;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
+        /*MOBILE DEVICES CSS START*/
     </style>
 
 </head>
@@ -1318,6 +1321,8 @@
 
         <!-- Drag Target Area To SlideIn Menu On Small Screens -->
         <div class="drag-target"></div>
+    </div>
+
     </div>
 
     <!-- Core JS -->

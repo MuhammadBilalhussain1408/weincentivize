@@ -636,6 +636,20 @@
             pointer-events: none;
             /* Prevent clicks */
         }
+        #loader {
+            /* display: none; */
+            /* position: fixed; */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            font-size: 24px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
     </style>
 
 </head>
@@ -664,8 +678,8 @@
                         </div>
 
                         <!-- Property Listing Wizard -->
-                        <div class="d-none" id="loader">
-                            <div class="d-flex justify-content-center text-center" >
+                        <div class="" id="loader">
+                            <div class="d-flex justify-content-center text-center">
                                 <div class="row py-sm-6 gy-3 gy-sm-0 position-absolute">
                                     <div class="col">
                                         <!-- Plane -->
@@ -675,7 +689,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="wizard-property-listing" class="bs-stepper vertical mt-2 ">
+                        <div id="wizard-property-listing" class="bs-stepper vertical mt-2 d-none">
 
                             <div class="bs-stepper-header border-end">
                                 <a href="javascript:void(0);" class="app-brand-link">
@@ -1741,14 +1755,19 @@
             enableDateBtn()
         });
 
-        function showloader(){
+        function showloader() {
             $('#wizard-property-listing').addClass('d-none');
             $('#loader').removeClass('d-none')
         }
-        function hideloader(){
+
+        function hideloader() {
             $('#wizard-property-listing').removeClass('d-none');
             $('#loader').addClass('d-none')
         }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            hideloader()
+        });
     </script>
 
 </body>

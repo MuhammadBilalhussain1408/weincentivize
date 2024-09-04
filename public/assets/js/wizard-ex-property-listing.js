@@ -136,7 +136,7 @@
                 plPropertyType: {
                     validators: {
                         notEmpty: {
-                            message: 'Please select property type'
+                            message: 'Please select service type'
                         }
                     }
                 },
@@ -226,7 +226,7 @@
                 plPropertyType: {
                     validators: {
                         notEmpty: {
-                            message: 'Please enter your property type'
+                            message: 'Please enter your service type'
                         }
                     }
                 },

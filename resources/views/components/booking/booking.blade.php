@@ -1144,8 +1144,9 @@
                                                 </button>
 
                                                 <button id="socialMediaButton"
-                                                    class="btn btn-success btn-submit btn-next nxt-prev-btn">Save and
-                                                    Submit</button>
+                                                    class="btn btn-success btn-submit btn-next nxt-prev-btn">
+                                                    Submit
+                                                </button>
 
                                             </div>
                                         </div>
@@ -1235,7 +1236,7 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                        <a href="javascript:void(0)"
+                                                        <a href="/appointment/booking"
                                                             class="btn w-50 btn-green nxt-prev-btn">Go Back</a>
                                                     </div>
                                                 </div>

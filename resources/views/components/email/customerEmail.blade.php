@@ -9,7 +9,7 @@
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
     <title>THANK YOU</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700"
-        rel="stylesheet" media="screen">
+          rel="stylesheet" media="screen">
     <style>
         .hover-underline:hover {
             text-decoration: underline !important;
@@ -107,23 +107,24 @@
                                             Hi "{{ $contactPerson }}",
                                         </p>
                                         <p style=" font-size: 16px; margin-top: 0; text-align: center;">
-                                            Your Booking ID number is: <strong>{{ $bookingId }}.</strong> Thank you for contacting SDA Customer Care. A representative from our team will get back to you shortly.
+                                            Your Booking ID number is: <span style="font-weight: bold;">{{ $bookingId }}.</span>
+                                            Thank you for scheduling a booking with us. A representative from our team will get back to you shortly.
                                         </p>
                                         <table>
                                             <tr>
-                                                <td colspan="2">The SDA Customer Care Team</td>
+                                                <td colspan="2">The We Incentivize Team</td>
                                             </tr>
                                             <tr>
                                                 <td>Phone</td>
-                                                <td> (+92) 319 4300 042</td>
+                                                <td> +1 (888) 994-8158</td>
                                             </tr>
                                             <tr>
                                                 <td>Email</td>
-                                                <td>support@sdacares.com</td>
+                                                <td>info@weincentivize.com</td>
                                             </tr>
                                             <tr>
                                                 <td>Website</td>
-                                                <td>www.sdacares.com</td>
+                                                <td>www.weincentivize.com</td>
                                             </tr>
                                         </table>
                                     </td>

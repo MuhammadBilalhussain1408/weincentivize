@@ -20,13 +20,13 @@ class CustomerBookingMail extends Mailable
     public function build()
     {
         // Retrieve required details
-        $bookingId = '000' . $this->booking->id;
+        $booking = $this->booking;
         $contactPerson = $this->booking->firstName . ' ' . $this->booking->lastName;
 
         // Build the email
-        return $this->view('components.email.customerEmail')
+        return $this->subject('We Incentivize')->view('components.email.customerEmail')
             ->with([
-                'bookingId' => $bookingId,
+                'booking' => $booking,
                 'contactPerson' => $contactPerson,
             ]);
     }

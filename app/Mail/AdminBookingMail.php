@@ -20,19 +20,20 @@ class AdminBookingMail extends Mailable
     public function build()
 {
     // Retrieve booking details
-    $bookingId = '000' . $this->booking->id;
+    $bookingId = $this->booking->booking_id;
     $serviceName = $this->booking->propertyType;
-    
+
     // Concatenate selectedDate and selectedTime from the database
     $dateTime = $this->booking->selectedDate . ' ' . $this->booking->selectedTime;
-    
+
     // Additional data
     $location = $this->booking->address;
     $contactPerson = $this->booking->firstName . ' ' . $this->booking->lastName;
     $contactNumber = $this->booking->contact;
 
     // Build the email
-    return $this->view('components.email.adminEmail')
+    return $this->subject('We Incentivize')->view('components.email.adminEmail')
+
         ->with([
             'bookingId' => $bookingId,
             'serviceName' => $serviceName,

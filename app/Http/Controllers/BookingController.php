@@ -50,9 +50,15 @@ class BookingController extends Controller
             'otherCharges' => 'nullable',
 
         ]);
-
+        $arr = $request->all();
+        $oldLatestBooking = Booking::latest()->first();
+        if($oldLatestBooking){
+            $arr['booking_id'] ='WI-'. sprintf('%04d', $oldLatestBooking->id);
+        }else{
+            $arr['booking_id'] ='WI-'. sprintf('%04d', 1);
+        }
         // Create a new booking entry
-        $booking = Booking::create($request->all());
+        $booking = Booking::create($arr);
 
 
         $email = $validated['email']; // customer's email address
@@ -68,7 +74,7 @@ class BookingController extends Controller
 
         return response()->json([
             'success' => true,
-            'bookingId' => $booking->id,
+            'bookingId' => $booking->booking_id,
             'serviceName' => $booking->propertyType,
             'dateTime' => now()->format('Y-m-d H:i:s'), // or any relevant date/time
             'location' => $booking->address,

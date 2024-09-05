@@ -652,7 +652,41 @@
             }
         }
 
-        /*MOBILE DEVICES CSS START*/
+
+        #price-details {
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .selected-date {
+            background-color: #058283;
+            color: #fff !important;
+            border-radius: 50%;
+        }
+
+        .disabled {
+            color: #cccccc;
+            /* Lighter color for past dates */
+            background-color: #f0f0f0;
+            /* Light background to visually distinguish */
+            pointer-events: none;
+            /* Prevent clicks */
+        }
+
+        #loader {
+            /* display: none; */
+            /* position: fixed; */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            font-size: 24px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
     </style>
 
 </head>
@@ -668,10 +702,21 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
+                    <div class="" id="loader1" style="margin-top: 300px">
+                        <div class="d-flex justify-content-center text-center">
+                            <div class="row py-sm-6 gy-3 gy-sm-0 position-absolute">
+                                <div class="col">
+                                    <!-- Plane -->
+                                    <div class="spinner-border spinner-border-lg text-primary" role="status"></div>
+                                    {{-- <span>Loading1...</span> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Content -->
 
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-xxl flex-grow-1 container-p-y d-none" id="appointmentSec">
                         <div class="ribbon">
                             BOOK AN APPOINTMENT
                             {{--                        <i></i> --}}
@@ -681,7 +726,7 @@
                         </div>
 
                         <!-- Property Listing Wizard -->
-                        <div class="" id="loader">
+                        <div class="d-none" id="loader">
                             <div class="d-flex justify-content-center text-center">
                                 <div class="row py-sm-6 gy-3 gy-sm-0 position-absolute">
                                     <div class="col">
@@ -1760,18 +1805,29 @@
             enableDateBtn()
         });
 
-        function showloader() {
+        function showloader(loaderId = null) {
             $('#wizard-property-listing').addClass('d-none');
-            $('#loader').removeClass('d-none')
+            if (loaderId) {
+                $('#loader1').removeClass('d-none');
+            } else {
+                $('#loader').removeClass('d-none');
+            }
         }
 
-        function hideloader() {
+        function hideloader(loaderId = null) {
             $('#wizard-property-listing').removeClass('d-none');
-            $('#loader').addClass('d-none')
+            if (loaderId) {
+                $('#loader1').addClass('d-none');
+                $('#appointmentSec').removeClass('d-none');
+            } else {
+                $('#loader').addClass('d-none');
+            }
         }
 
         window.addEventListener('DOMContentLoaded', function() {
-            hideloader()
+            setTimeout(() => {
+                hideloader(1)
+            }, 1500);
         });
     </script>
 

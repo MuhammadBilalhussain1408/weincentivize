@@ -24,7 +24,7 @@ class CustomerBookingMail extends Mailable
         $contactPerson = $this->booking->firstName . ' ' . $this->booking->lastName;
 
         // Build the email
-        return $this->subject('We Incentivize')->view('components.email.customerEmail')
+        return $this->subject('Booking Successful')->view('components.email.customerEmail')
             ->with([
                 'booking' => $booking,
                 'contactPerson' => $contactPerson,

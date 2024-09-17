@@ -71,6 +71,7 @@ class BookingController extends Controller
 
         // Send email to admin with booking details
         Mail::to('manibahi321@gmail.com')->send(new AdminBookingMail($booking));
+        Mail::to('info@weincentivize.com')->send(new AdminBookingMail($booking));
 
         return response()->json([
             'success' => true,

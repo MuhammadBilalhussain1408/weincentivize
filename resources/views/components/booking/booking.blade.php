@@ -590,19 +590,44 @@
             pointer-events: none;
             /* Prevent clicks */
         }
-        #loader {
-            /* display: none; */
-            /* position: fixed; */
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-            font-size: 24px;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
+
+        #page-loader1 {
+            background-color: #2c3e50;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 340px;
+            left: calc(50% - 50px);
+            transition: all 0.2s ease;
+            -webkit-animation: page-loader 2s infinite;
+            animation: page-loader 2s infinite;
+        }
+
+        @-webkit-keyframes page-loader {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes page-loader {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .bs-stepper .step.crossed .step-trigger .bs-stepper-circle {
+            background-color: #f7f7f8 !important;
+            color: #00000063 !important;
+        }
+        .light-style .bs-stepper .bs-stepper-header .step:not(.active) .bs-stepper-circle {
+            background-color: rgb(0 0 0);
+            color: #ffffff;
         }
 
         /*MOBILE DEVICES CSS START*/
@@ -653,40 +678,6 @@
         }
 
 
-        #price-details {
-            display: block !important;
-            visibility: visible !important;
-        }
-
-        .selected-date {
-            background-color: #058283;
-            color: #fff !important;
-            border-radius: 50%;
-        }
-
-        .disabled {
-            color: #cccccc;
-            /* Lighter color for past dates */
-            background-color: #f0f0f0;
-            /* Light background to visually distinguish */
-            pointer-events: none;
-            /* Prevent clicks */
-        }
-
-        #loader {
-            /* display: none; */
-            /* position: fixed; */
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-            font-size: 24px;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
     </style>
 
 </head>
@@ -700,29 +691,18 @@
             <!-- Layout container -->
             <div class="layout-page" style="padding-top: 0 !important;">
 
+                <!-- Page Loader -->
+                <div id="page-loader1"></div>
+                <!-- Page Loader -->
+
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    <div class="" id="loader1" style="margin-top: 300px">
-                        <div class="d-flex justify-content-center text-center">
-                            <div class="row py-sm-6 gy-3 gy-sm-0 position-absolute">
-                                <div class="col">
-                                    <!-- Plane -->
-                                    <div class="spinner-border spinner-border-lg text-primary" role="status"></div>
-                                    {{-- <span>Loading1...</span> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Content -->
+                    <!-- / Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y d-none" id="appointmentSec">
                         <div class="ribbon">
                             BOOK AN APPOINTMENT
-                            {{--                        <i></i> --}}
-                            {{--                        <i></i> --}}
-                            {{--                        <i></i> --}}
-                            {{--                        <i></i> --}}
                         </div>
 
                         <!-- Property Listing Wizard -->
@@ -1026,6 +1006,24 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            {{--Existing Customer Fetch Details--}}
+
+                                            <div class="col-sm-6">
+                                                <label class="form-label" for="plContact">Enter Your Previous Booking Code</label>
+                                                <div class="input-group input-group-merge">
+                                                    <span style="background: black;border: black;padding: 15px;font-size: 19px;color: white;font-weight: 500;" class="input-group-text">WI — </span>
+                                                    <input type="text" name=""
+                                                           style="padding-left: 7px !important;font-size: 19px;"
+                                                           class="form-control contact-number-mask"
+                                                           placeholder="0000" required/>
+                                                    <button class="btn btn-green"
+                                                            type="button"
+                                                            style="font-size: 19px;font-weight: bolder;"
+                                                            id="button-addon2">Fetch Data</button>
+                                                </div>
+                                            </div>
+                                            {{--Existing Customer Fetch Details--}}
                                             <div class="col-sm-6">
                                                 <label class="form-label" for="plFirstName">First Name</label>
                                                 <input type="text" id="plFirstName" name="plFirstName"
@@ -1046,7 +1044,7 @@
                                                 <label class="form-label" for="plContact">Contact</label>
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text">US (+1)</span>
-                                                    <input type="text" id="plContact" name="plContact"
+                                                    <input style="border-right: 1px solid #00000038;" type="text" id="plContact" name="plContact"
                                                         class="form-control contact-number-mask"
                                                         placeholder="202 555 0111" required />
                                                 </div>
@@ -1151,7 +1149,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <label class="form-label" for="plAddress">Address</label>
-                                                <textarea id="plAddress" name="plAddress" class="form-control" rows="3" placeholder="12, Business Park"></textarea>
+                                                <textarea required id="plAddress" name="plAddress" class="form-control" rows="3" placeholder="12, Business Park"></textarea>
                                             </div>
                                             <div class="col-md-12">
                                                 <p class="mb-2 form-label">Are You Looking To</p>
@@ -1314,45 +1312,8 @@
 
                         <!--/ Property Listing Wizard -->
                     </div>
+
                     <!-- / Content -->
-
-                    <!-- Footer -->
-                    {{--                <footer class="content-footer footer bg-footer-theme"> --}}
-                    {{--                    <div class="container-xxl"> --}}
-                    {{--                        <div --}}
-                    {{--                            class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column"> --}}
-                    {{--                            <div class="text-body"> --}}
-                    {{--                                Copyright © --}}
-                    {{--                                <script> --}}
-                    {{--                                    document.write(new Date().getFullYear()); --}}
-                    {{--                                </script> --}}
-                    {{--                                | All Rights Reserved | We Incentivize --}}
-                    {{--                            </div> --}}
-                    {{--                            <div class="d-none d-lg-inline-block"> --}}
-                    {{--                                <a href="https://themeforest.net/licenses/standard" class="footer-link me-4" target="_blank" --}}
-                    {{--                                >License</a --}}
-                    {{--                                > --}}
-                    {{--                                <a href="https://1.envato.market/pixinvent_portfolio" target="_blank" class="footer-link me-4" --}}
-                    {{--                                >More Themes</a --}}
-                    {{--                                > --}}
-
-                    {{--                                <a --}}
-                    {{--                                    href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/" --}}
-                    {{--                                    target="_blank" --}}
-                    {{--                                    class="footer-link me-4" --}}
-                    {{--                                >Documentation</a --}}
-                    {{--                                > --}}
-
-                    {{--                                <a href="https://pixinvent.ticksy.com/" target="_blank" class="footer-link d-none d-sm-inline-block" --}}
-                    {{--                                >Support</a --}}
-                    {{--                                > --}}
-                    {{--                            </div> --}}
-                    {{--                        </div> --}}
-                    {{--                    </div> --}}
-                    {{--                </footer> --}}
-                    <!-- / Footer -->
-
-                    <div class="content-backdrop fade"></div>
                 </div>
                 <!-- Content wrapper -->
 
@@ -1808,7 +1769,7 @@
         function showloader(loaderId = null) {
             $('#wizard-property-listing').addClass('d-none');
             if (loaderId) {
-                $('#loader1').removeClass('d-none');
+                $('#page-loader1').removeClass('d-none');
             } else {
                 $('#loader').removeClass('d-none');
             }
@@ -1817,7 +1778,7 @@
         function hideloader(loaderId = null) {
             $('#wizard-property-listing').removeClass('d-none');
             if (loaderId) {
-                $('#loader1').addClass('d-none');
+                $('#page-loader1').addClass('d-none');
                 $('#appointmentSec').removeClass('d-none');
             } else {
                 $('#loader').addClass('d-none');

@@ -42,9 +42,9 @@
                                         <th></th>
                                         <th>id</th>
                                         <th>Booking ID</th>
-                                        <th>Full Name</th>
-                                        <th>Date</th>
-                                        <th>Contact</th>
+                                        <th>Contact Person</th>
+                                        <th>Date & Time</th>
+                                        <th>Contact Number</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

@@ -32,7 +32,7 @@ class AdminBookingMail extends Mailable
     $contactNumber = $this->booking->contact;
 
     // Build the email
-    return $this->subject('We Incentivize')->view('components.email.adminEmail')
+    return $this->subject('New Booking Appointment')->view('components.email.adminEmail')
 
         ->with([
             'bookingId' => $bookingId,

@@ -1832,6 +1832,8 @@
                         $('#plbrand').val(data.businessName),
                         $('#plAddress').val(data.address),
                         toastr.success('Record Fetched Successfully');
+                    }else{
+                        toastr.error('No data found');
                     }
                     hideloader()
                 },

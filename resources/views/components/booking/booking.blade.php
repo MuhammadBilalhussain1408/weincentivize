@@ -607,6 +607,7 @@
             from {
                 transform: rotate(0deg);
             }
+
             to {
                 transform: rotate(360deg);
             }
@@ -616,6 +617,7 @@
             from {
                 transform: rotate(0deg);
             }
+
             to {
                 transform: rotate(360deg);
             }
@@ -625,6 +627,7 @@
             background-color: #f7f7f8 !important;
             color: #00000063 !important;
         }
+
         .light-style .bs-stepper .bs-stepper-header .step:not(.active) .bs-stepper-circle {
             background-color: rgb(0 0 0);
             color: #ffffff;
@@ -676,8 +679,6 @@
                 margin-bottom: 6px;
             }
         }
-
-
     </style>
 
 </head>
@@ -970,7 +971,8 @@
                                                                 </span>
                                                                 <input name="plPropertySaleRent"
                                                                     class="form-check-input" type="radio"
-                                                                    value="1" id="customRadioSell" checked />
+                                                                    value="1" id="customRadioSell" checked
+                                                                    onchange="handleRadioChange()" />
                                                             </label>
                                                         </div>
                                                     </div>
@@ -1000,30 +1002,33 @@
                                                                 </span>
                                                                 <input name="plPropertySaleRent"
                                                                     class="form-check-input" type="radio"
-                                                                    value="2" id="customRadioRent" />
+                                                                    value="2" id="customRadioRent"
+                                                                    onchange="handleRadioChange()" />
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            {{--Existing Customer Fetch Details--}}
+                                            {{-- Existing Customer Fetch Details --}}
 
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plContact">Enter Your Previous Booking Code</label>
+                                            <div class="col-sm-6 d-none" id="wi_div">
+                                                <label class="form-label" for="plContact">Enter Your Previous Booking
+                                                    Code</label>
                                                 <div class="input-group input-group-merge">
-                                                    <span style="background: black;border: black;padding: 15px;font-size: 19px;color: white;font-weight: 500;" class="input-group-text">WI — </span>
+                                                    <span
+                                                        style="background: black;border: black;padding: 15px;font-size: 19px;color: white;font-weight: 500;"
+                                                        class="input-group-text">WI — </span>
                                                     <input type="text" name=""
-                                                           style="padding-left: 7px !important;font-size: 19px;"
-                                                           class="form-control contact-number-mask"
-                                                           placeholder="0000" required/>
-                                                    <button class="btn btn-green"
-                                                            type="button"
-                                                            style="font-size: 19px;font-weight: bolder;"
-                                                            id="button-addon2">Fetch Data</button>
+                                                        style="padding-left: 7px !important;font-size: 19px;"
+                                                        class="form-control contact-number-mask" placeholder="0000"
+                                                        id="wi_input_data"  required />
+                                                    <button class="btn btn-green" type="button"
+                                                        style="font-size: 19px;font-weight: bolder;"
+                                                        id="button-addon2" onclick="fetchExistingRecord()">Fetch Data</button>
                                                 </div>
                                             </div>
-                                            {{--Existing Customer Fetch Details--}}
+                                            {{-- Existing Customer Fetch Details --}}
                                             <div class="col-sm-6">
                                                 <label class="form-label" for="plFirstName">First Name</label>
                                                 <input type="text" id="plFirstName" name="plFirstName"
@@ -1044,7 +1049,8 @@
                                                 <label class="form-label" for="plContact">Contact</label>
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text">US (+1)</span>
-                                                    <input style="border-right: 1px solid #00000038;" type="text" id="plContact" name="plContact"
+                                                    <input style="border-right: 1px solid #00000038;" type="text"
+                                                        id="plContact" name="plContact"
                                                         class="form-control contact-number-mask"
                                                         placeholder="202 555 0111" required />
                                                 </div>
@@ -1149,7 +1155,8 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <label class="form-label" for="plAddress">Address</label>
-                                                <textarea required id="plAddress" name="plAddress" class="form-control" rows="3" placeholder="12, Business Park"></textarea>
+                                                <textarea required id="plAddress" name="plAddress" class="form-control" rows="3"
+                                                    placeholder="12, Business Park"></textarea>
                                             </div>
                                             <div class="col-md-12">
                                                 <p class="mb-2 form-label">Are You Looking To</p>
@@ -1412,7 +1419,7 @@
                     const label = document.querySelector(`label[for="${selectedRadio.id}"]`);
                     if (label) {
                         statusField.value = label.textContent.trim();
-                        console.log('Selected Status:', statusField.value); // Debugging
+                        // console.log('Selected Status:', statusField.value); // Debugging
                     }
                 });
             });
@@ -1790,6 +1797,54 @@
                 hideloader(1)
             }, 1500);
         });
+
+        function handleRadioChange() {
+            const tab = document.querySelector('input[name="plPropertySaleRent"]:checked');
+            if (tab.value == 2) {
+                $('#wi_div').removeClass('d-none');
+            } else {
+                $('#wi_div').addClass('d-none');
+            }
+        }
+
+        function fetchExistingRecord() {
+            // e.preventDefault();
+                showloader()
+            let id = $('#wi_input_data').val()?.replace(/\s+/g, '');
+            $.ajax({
+                url: '/existing-booking/' + id,
+                method: 'GET',
+                data: {},
+                success: function(response) {
+                    $('#wi_div').removeClass('d-none');
+                    console.log('Response:', response);
+                    let data = response.data;
+                    if(data){
+                        $('#plFirstName').val(data.firstName),
+                        $('#plLastName').val(data.lastName),
+                        $('#plEmail').val(data.email),
+                        $('#plContact').val(data.contact),
+                        $('#plPropertyType').val(data.propertyType),
+                        $('#plZipCode').val(data.zipCode),
+                        $('#plCountry').val(data.country),
+                        $('#plState').val(data.state),
+                        $('#plweb').val(data.website),
+                        $('#plbrand').val(data.businessName),
+                        $('#plAddress').val(data.address),
+                        toastr.success('Record Fetched Successfully');
+                    }
+                    hideloader()
+                },
+                error: function(xhr, status, error) {
+                    $('#wi_div').removeClass('d-none');
+                    // console.error('Error:', error);
+                    // $('#success').text("An error occurred. Please try again.");
+                    toastr.error('An error occurred. Please try again.');
+                    hideloader()
+
+                }
+            });
+        }
     </script>
 
 </body>

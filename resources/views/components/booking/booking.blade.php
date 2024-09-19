@@ -1028,95 +1028,93 @@
                                                         id="button-addon2" onclick="fetchExistingRecord()">Fetch Data</button>
                                                 </div>
                                             </div>
+                                            <div class="row" id="existngCustomer">
                                             {{-- Existing Customer Fetch Details --}}
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plFirstName">First Name</label>
-                                                <input type="text" id="plFirstName" name="plFirstName"
-                                                    class="form-control" placeholder="John" required />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plLastName">Last Name</label>
-                                                <input required type="text" id="plLastName" name="plLastName"
-                                                    class="form-control" placeholder="Doe" />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plEmail">Email</label>
-                                                <input type="text" id="plEmail" name="plEmail"
-                                                    class="form-control" placeholder="john.doe@example.com"
-                                                    required />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plContact">Contact</label>
-                                                <div class="input-group input-group-merge">
-                                                    <span class="input-group-text">US (+1)</span>
-                                                    <input style="border-right: 1px solid #00000038;" type="text"
-                                                        id="plContact" name="plContact"
-                                                        class="form-control contact-number-mask"
-                                                        placeholder="202 555 0111" required />
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plFirstName">First Name</label>
+                                                    <input type="text" id="plFirstName" name="plFirstName"
+                                                        class="form-control" placeholder="John" required />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plLastName">Last Name</label>
+                                                    <input required type="text" id="plLastName" name="plLastName"
+                                                        class="form-control" placeholder="Doe" />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plEmail">Email</label>
+                                                    <input type="text" id="plEmail" name="plEmail"
+                                                        class="form-control" placeholder="john.doe@example.com"
+                                                        required />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plContact">Contact</label>
+                                                    <div class="input-group input-group-merge">
+                                                        <span class="input-group-text">US (+1)</span>
+                                                        <input style="border-right: 1px solid #00000038;" type="text"
+                                                            id="plContact" name="plContact"
+                                                            class="form-control contact-number-mask"
+                                                            placeholder="202 555 0111" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plPropertyType">Select Service</label>
+                                                    <select required id="plPropertyType" name="plPropertyType"
+                                                        class="select2 form-select" data-allow-clear="true">
+                                                        <option value="">Select Service Type</option>
+                                                        <option value="Cost Segregation">Cost Segregation</option>
+                                                        <option value="Research & Development">Research & Development
+                                                        </option>
+                                                        <option value="45L Tax Credits">45L Tax Credits</option>
+                                                        <option value="Section 179D Tax Deduction">Section 179D Tax
+                                                            Deduction</option>
+                                                        <option value="Grant Services">Grant Services</option>
+                                                        <option value="CFO Services">CFO Services</option>
+                                                        <option value="CFO Services">Business Tax Credit</option>
+                                                        <option value="CFO Services">Incentives Advisory</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plZipCode">Zip Code</label>
+                                                    <input required type="number" id="plZipCode" name="plZipCode"
+                                                        class="form-control" placeholder="99950" />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plCountry">Country</label>
+                                                    <select required id="plCountry" name="plCountry"
+                                                        class="select2 form-select" data-allow-clear="true">
+                                                        <option value="">Select</option>
+                                                        <option value="Australia">Australia</option>
+                                                        <option value="Bangladesh">Bangladesh</option>
+                                                        <option value="Belarus">Belarus</option>
+                                                        <option value="Brazil">Brazil</option>
+                                                        <option value="Canada">Canada</option>
+                                                        <option value="China">China</option>
+                                                        <option value="France">France</option>
+                                                        <option value="Germany">Germany</option>
+                                                        <option value="India">India</option>
+                                                        <option value="Indonesia">Indonesia</option>
+                                                        <option value="Israel">Israel</option>
+                                                        <option value="Italy">Italy</option>
+                                                        <option value="Japan">Japan</option>
+                                                        <option value="Korea">Korea, Republic of</option>
+                                                        <option value="Mexico">Mexico</option>
+                                                        <option value="Philippines">Philippines</option>
+                                                        <option value="Russia">Russian Federation</option>
+                                                        <option value="South Africa">South Africa</option>
+                                                        <option value="Thailand">Thailand</option>
+                                                        <option value="Turkey">Turkey</option>
+                                                        <option value="Ukraine">Ukraine</option>
+                                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                                        <option value="United Kingdom">United Kingdom</option>
+                                                        <option value="United States">United States</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="plState">State</label>
+                                                    <input required type="text" id="plState" name="plState"
+                                                        class="form-control" placeholder="California" />
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plPropertyType">Select Service</label>
-                                                <select required id="plPropertyType" name="plPropertyType"
-                                                    class="select2 form-select" data-allow-clear="true">
-                                                    <option value="">Select Service Type</option>
-                                                    <option value="Cost Segregation">Cost Segregation</option>
-                                                    <option value="Research & Development">Research & Development
-                                                    </option>
-                                                    <option value="45L Tax Credits">45L Tax Credits</option>
-                                                    <option value="Section 179D Tax Deduction">Section 179D Tax
-                                                        Deduction</option>
-                                                    <option value="Grant Services">Grant Services</option>
-                                                    <option value="CFO Services">CFO Services</option>
-                                                    <option value="CFO Services">Business Tax Credit</option>
-                                                    <option value="CFO Services">Incentives Advisory</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plZipCode">Zip Code</label>
-                                                <input required type="number" id="plZipCode" name="plZipCode"
-                                                    class="form-control" placeholder="99950" />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plCountry">Country</label>
-                                                <select required id="plCountry" name="plCountry"
-                                                    class="select2 form-select" data-allow-clear="true">
-                                                    <option value="">Select</option>
-                                                    <option value="Australia">Australia</option>
-                                                    <option value="Bangladesh">Bangladesh</option>
-                                                    <option value="Belarus">Belarus</option>
-                                                    <option value="Brazil">Brazil</option>
-                                                    <option value="Canada">Canada</option>
-                                                    <option value="China">China</option>
-                                                    <option value="France">France</option>
-                                                    <option value="Germany">Germany</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Indonesia">Indonesia</option>
-                                                    <option value="Israel">Israel</option>
-                                                    <option value="Italy">Italy</option>
-                                                    <option value="Japan">Japan</option>
-                                                    <option value="Korea">Korea, Republic of</option>
-                                                    <option value="Mexico">Mexico</option>
-                                                    <option value="Philippines">Philippines</option>
-                                                    <option value="Russia">Russian Federation</option>
-                                                    <option value="South Africa">South Africa</option>
-                                                    <option value="Thailand">Thailand</option>
-                                                    <option value="Turkey">Turkey</option>
-                                                    <option value="Ukraine">Ukraine</option>
-                                                    <option value="United Arab Emirates">United Arab Emirates</option>
-                                                    <option value="United Kingdom">United Kingdom</option>
-                                                    <option value="United States">United States</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label" for="plState">State</label>
-                                                <input required type="text" id="plState" name="plState"
-                                                    class="form-control" placeholder="California" />
-                                            </div>
-
-
-
-
                                             <div class="col-12 d-flex justify-content-between">
                                                 <button class="btn btn-black btn-prev nxt-prev-btn">
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
@@ -1801,8 +1799,10 @@
         function handleRadioChange() {
             const tab = document.querySelector('input[name="plPropertySaleRent"]:checked');
             if (tab.value == 2) {
+                $('#existngCustomer').addClass('d-none');
                 $('#wi_div').removeClass('d-none');
             } else {
+                $('#existngCustomer').removeClass('d-none');
                 $('#wi_div').addClass('d-none');
             }
         }
@@ -1820,6 +1820,7 @@
                     console.log('Response:', response);
                     let data = response.data;
                     if(data){
+                        $('#existngCustomer').removeClass('d-none');
                         $('#plFirstName').val(data.firstName);
                         $('#plLastName').val(data.lastName);
                         $('#plEmail').val(data.email);

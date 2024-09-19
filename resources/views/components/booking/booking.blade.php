@@ -1820,17 +1820,24 @@
                     console.log('Response:', response);
                     let data = response.data;
                     if(data){
-                        $('#plFirstName').val(data.firstName),
-                        $('#plLastName').val(data.lastName),
-                        $('#plEmail').val(data.email),
-                        $('#plContact').val(data.contact),
-                        $('#plPropertyType').val(data.propertyType),
-                        $('#plZipCode').val(data.zipCode),
-                        $('#plCountry').val(data.country),
-                        $('#plState').val(data.state),
-                        $('#plweb').val(data.website),
-                        $('#plbrand').val(data.businessName),
-                        $('#plAddress').val(data.address),
+                        $('#plFirstName').val(data.firstName);
+                        $('#plLastName').val(data.lastName);
+                        $('#plEmail').val(data.email);
+                        $('#plContact').val(data.contact);
+                        $('#plPropertyType').val(data.propertyType);
+                        $('#select2-plPropertyType-container span').text(data.propertyType);
+                        $('#plZipCode').val(data.zipCode);
+                        // $('#plCountry').val(data.country),
+                        $('#plCountry').val(data.country).trigger('change');
+                        $('#select2-plCountry-container span').text(data.country);
+                        $('#plState').val(data.state);
+                        $('#plweb').val(data.website);
+                        $('#plbrand').val(data.businessName);
+                        $('#plAddress').val(data.address);
+                        let radios = document.querySelectorAll('input[name="status"]');
+                        for (const radio of radios) {
+            radio.checked = (radio.value === data.status); // Check the radio if its value matches
+        }
                         toastr.success('Record Fetched Successfully');
                     }else{
                         toastr.error('No data found');

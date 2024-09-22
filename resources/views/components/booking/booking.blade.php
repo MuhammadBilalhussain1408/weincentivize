@@ -472,7 +472,7 @@
         }
 
         .form-control {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 600;
             padding: 11px 10px 11px 10px;
         }
@@ -493,16 +493,16 @@
         }
 
         .light-style .select2-container--default .select2-selection--single {
-            height: 48px !important;
+            height: 51px !important;
         }
 
         .light-style .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 45px !important;
+            line-height: 51px !important;
             color: #000000;
         }
 
         .light-style .select2-container--default.select2-container--open .select2-selection--single .select2-selection__rendered {
-            line-height: 45px !important;
+            line-height: 51px !important;
             padding-inline-start: calc(0.9375rem - 2px);
             padding-inline-end: calc(2.25rem - 2px);
         }
@@ -540,6 +540,7 @@
 
         .select2-container .select2-selection--single .select2-selection__rendered {
             font-weight: 600;
+            font-size: 17px;
         }
 
         .form-control::-webkit-input-placeholder {
@@ -631,6 +632,23 @@
         .light-style .bs-stepper .bs-stepper-header .step:not(.active) .bs-stepper-circle {
             background-color: rgb(0 0 0);
             color: #ffffff;
+        }
+        .was-validated .form-control:invalid, .was-validated .form-control:valid, .form-control.is-invalid, .form-control.is-valid {
+            padding: 11px 10px 11px 10px;
+        }
+        .input-group:focus-within {
+            box-shadow: none;
+        }
+        .invalid-feedback {
+            font-size: 17px;
+            font-weight: 600;
+        }
+        .input-group-text {
+            font-size: 17px;
+            font-weight: 600;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 3px;
         }
 
         /*MOBILE DEVICES CSS START*/
@@ -1012,8 +1030,8 @@
 
                                             {{-- Existing Customer Fetch Details --}}
 
-                                            <div class="col-sm-6 d-none" id="wi_div">
-                                                <label class="form-label" for="plContact">Enter Your Previous Booking
+                                            <div class="col-sm-12 d-none" id="wi_div">
+                                                <label class="form-label pb-2" for="plContact">Enter Your Previous Booking
                                                     Code</label>
                                                 <div class="input-group input-group-merge">
                                                     <span
@@ -1028,25 +1046,25 @@
                                                         id="button-addon2" onclick="fetchExistingRecord()">Fetch Data</button>
                                                 </div>
                                             </div>
-                                            <div class="row" id="existngCustomer">
+                                            <div class="row pt-5" id="existngCustomer">
                                             {{-- Existing Customer Fetch Details --}}
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plFirstName">First Name</label>
                                                     <input type="text" id="plFirstName" name="plFirstName"
                                                         class="form-control" placeholder="John" required />
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plLastName">Last Name</label>
                                                     <input required type="text" id="plLastName" name="plLastName"
                                                         class="form-control" placeholder="Doe" />
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plEmail">Email</label>
                                                     <input type="text" id="plEmail" name="plEmail"
                                                         class="form-control" placeholder="john.doe@example.com"
                                                         required />
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plContact">Contact</label>
                                                     <div class="input-group input-group-merge">
                                                         <span class="input-group-text">US (+1)</span>
@@ -1056,7 +1074,7 @@
                                                             placeholder="202 555 0111" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plPropertyType">Select Service</label>
                                                     <select required id="plPropertyType" name="plPropertyType"
                                                         class="select2 form-select" data-allow-clear="true">
@@ -1073,12 +1091,12 @@
                                                         <option value="CFO Services">Incentives Advisory</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plZipCode">Zip Code</label>
                                                     <input required type="number" id="plZipCode" name="plZipCode"
                                                         class="form-control" placeholder="99950" />
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plCountry">Country</label>
                                                     <select required id="plCountry" name="plCountry"
                                                         class="select2 form-select" data-allow-clear="true">
@@ -1109,7 +1127,7 @@
                                                         <option value="United States">United States</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 pt-3">
                                                     <label class="form-label" for="plState">State</label>
                                                     <input required type="text" id="plState" name="plState"
                                                         class="form-control" placeholder="California" />
@@ -1194,7 +1212,7 @@
                                                         name="plOtherCharges" id="plOtherCharges" />
                                                     <label class="form-check-label" for="plOtherCharges">
                                                         By proceeding, you confirm that you have read and agree to <a
-                                                            href="">Terms of Use</a> & <a href="">
+                                                            href="https://weincentivize.com/terms-and-conditions" target="_blank">Terms of Use</a> & <a href="https://weincentivize.com/privacy-policy" target="_blank">
                                                             Privacy Notice.</a>
                                                     </label>
                                                 </div>

@@ -1844,11 +1844,11 @@
                         $('#plEmail').val(data.email);
                         $('#plContact').val(data.contact);
                         $('#plPropertyType').val(data.propertyType);
-                        $('#select2-plPropertyType-container span').text(data.propertyType);
+                        $('#select2-plPropertyType-container').text(data.propertyType);
                         $('#plZipCode').val(data.zipCode);
                         // $('#plCountry').val(data.country),
                         $('#plCountry').val(data.country).trigger('change');
-                        $('#select2-plCountry-container span').text(data.country);
+                        $('#select2-plCountry-container').text(data.country);
                         $('#plState').val(data.state);
                         $('#plweb').val(data.website);
                         $('#plbrand').val(data.businessName);

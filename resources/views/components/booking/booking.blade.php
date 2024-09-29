@@ -888,7 +888,7 @@
                                                                 Standard Time (EST) zone
                                                             </h5>
                                                         </span>
-                                                        <input class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-5" id="zone1" />
                                                     </label>
                                                 </div>
@@ -906,7 +906,7 @@
                                                                 Standard Time (CST) zone
                                                             </h5>
                                                         </span>
-                                                        <input class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-6" id="zone2" />
                                                     </label>
                                                 </div>
@@ -924,7 +924,7 @@
                                                                 Standard Time (MST) zone
                                                             </h5>
                                                         </span>
-                                                        <input class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-7" id="zone3" />
                                                     </label>
                                                 </div>
@@ -942,7 +942,7 @@
                                                                 Standard Time (PST) zone
                                                             </h5>
                                                         </span>
-                                                        <input class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-8" id="zone4" />
                                                     </label>
                                                 </div>
@@ -2031,6 +2031,33 @@
 
                 }
             });
+        }
+    </script>
+
+    <script>
+        function check(input)
+        {
+
+            var checkboxes = document.getElementsByClassName("timeZoneCheck");
+
+            for(var i = 0; i < checkboxes.length; i++)
+            {
+                //uncheck all
+                if(checkboxes[i].checked == true)
+                {
+                    checkboxes[i].checked = false;
+                }
+            }
+
+            //set checked of clicked object
+            if(input.checked == true)
+            {
+                input.checked = false;
+            }
+            else
+            {
+                input.checked = true;
+            }
         }
     </script>
 

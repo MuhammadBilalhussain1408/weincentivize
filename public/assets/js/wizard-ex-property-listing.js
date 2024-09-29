@@ -71,10 +71,11 @@
         const wizardPropertyListingForm = wizardPropertyListing.querySelector('#wizard-property-listing-form');
         // Wizard steps
         const wizardPropertyListingFormStep1 = wizardPropertyListingForm.querySelector('#personal-details');
-        const wizardPropertyListingFormStep2 = wizardPropertyListingForm.querySelector('#property-details');
-        const wizardPropertyListingFormStep3 = wizardPropertyListingForm.querySelector('#property-features');
-        const wizardPropertyListingFormStep4 = wizardPropertyListingForm.querySelector('#property-area');
-        const wizardPropertyListingFormStep5 = wizardPropertyListingForm.querySelector('#price-details');
+        const wizardPropertyListingFormStep2 = wizardPropertyListingForm.querySelector('#time-zone');
+        const wizardPropertyListingFormStep3 = wizardPropertyListingForm.querySelector('#property-details');
+        const wizardPropertyListingFormStep4 = wizardPropertyListingForm.querySelector('#property-features');
+        const wizardPropertyListingFormStep5 = wizardPropertyListingForm.querySelector('#property-area');
+        const wizardPropertyListingFormStep6 = wizardPropertyListingForm.querySelector('#price-details');
         // Wizard next prev button
         const wizardPropertyListingNext = [].slice.call(wizardPropertyListingForm.querySelectorAll('.btn-next'));
         const wizardPropertyListingPrev = [].slice.call(wizardPropertyListingForm.querySelectorAll('.btn-prev'));
@@ -125,11 +126,54 @@
             }
         }).on('core.form.valid', function () {
             // Jump to the next step when all fields in the current step are valid
-              validationStepper.next();
+            validationStepper.next();
+        });
+        // Personal Details
+        const FormValidation2 = FormValidation.formValidation(wizardPropertyListingFormStep1, {
+            fields: {
+                // * Validate the fields here based on your requirements
+                // plFirstName: {
+                //     validators: {
+                //         notEmpty: {
+                //             message: 'Please enter your first name'
+                //         }
+                //     }
+                // },
+                // plLastName: {
+                //     validators: {
+                //         notEmpty: {
+                //             message: 'Please enter your last name'
+                //         }
+                //     }
+                // }
+            },
+
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    // Use this for enabling/changing valid/invalid class
+                    // eleInvalidClass: '',
+                    eleValidClass: '',
+                    rowSelector: '.col-sm-6'
+                }),
+                autoFocus: new FormValidation.plugins.AutoFocus(),
+                submitButton: new FormValidation.plugins.SubmitButton()
+            },
+            init: instance => {
+                instance.on('plugins.message.placed', function (e) {
+                    //* Move the error message out of the `input-group` element
+                    if (e.element.parentElement.classList.contains('input-group')) {
+                        e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+                    }
+                });
+            }
+        }).on('core.form.valid', function () {
+            // Jump to the next step when all fields in the current step are valid
+            validationStepper.next();
         });
 
         // Property Details
-        const FormValidation2 = FormValidation.formValidation(wizardPropertyListingFormStep2, {
+        const FormValidation3 = FormValidation.formValidation(wizardPropertyListingFormStep2, {
             fields: {
                 // * Validate the fields here based on your requirements
 
@@ -193,7 +237,7 @@
         }
 
         // Property Features
-        const FormValidation3 = FormValidation.formValidation(wizardPropertyListingFormStep3, {
+        const FormValidation4 = FormValidation.formValidation(wizardPropertyListingFormStep3, {
             fields: {
                 plFirstName: {
                     validators: {
@@ -268,7 +312,7 @@
         });
 
         // Property Area
-        const FormValidation4 = FormValidation.formValidation(wizardPropertyListingFormStep4, {
+        const FormValidation5 = FormValidation.formValidation(wizardPropertyListingFormStep4, {
             fields: {
                 // * Validate the fields here based on your requirements
             },
@@ -289,7 +333,7 @@
         });
 
         // Price Details
-        const FormValidation5 = FormValidation.formValidation(wizardPropertyListingFormStep5, {
+        const FormValidation6 = FormValidation.formValidation(wizardPropertyListingFormStep5, {
             fields: {
                 // * Validate the fields here based on your requirements
             },
@@ -315,15 +359,15 @@
         wizardPropertyListingNext.forEach(item => {
             item.addEventListener('click', event => {
                 // When click the Next button, we will validate the current step
+                console.log(validationStepper._currentIndex);
                 switch (validationStepper._currentIndex) {
+
                     case 0:
                         FormValidation1.validate();
                         break;
-
                     case 1:
                         FormValidation2.validate();
                         break;
-
                     case 2:
                         FormValidation3.validate();
                         break;
@@ -336,6 +380,10 @@
                         FormValidation5.validate();
                         break;
 
+                    case 5:
+                        FormValidation6.validate();
+                        break;
+
                     default:
                         break;
                 }
@@ -345,6 +393,9 @@
         wizardPropertyListingPrev.forEach(item => {
             item.addEventListener('click', event => {
                 switch (validationStepper._currentIndex) {
+                    case 5:
+                        validationStepper.previous();
+                        break;
                     case 4:
                         validationStepper.previous();
                         break;

@@ -857,7 +857,7 @@
                                             </div>
 
                                             <div class="col-12 d-flex justify-content-between">
-                                                <button class="btn btn-label-secondary btn-prev nxt-prev-btn" disabled>
+                                                <button class="btn btn-label-secondary btn-prev nxt-prev-btn" type="button" disabled>
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
@@ -1071,7 +1071,7 @@
                                             </div>
 
                                             <div class="col-12 d-flex justify-content-between">
-                                                <button class="btn btn-black btn-prev nxt-prev-btn">
+                                                <button class="btn btn-black btn-prev nxt-prev-btn" type="button">
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
@@ -1262,7 +1262,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-between">
-                                                <button class="btn btn-black btn-prev nxt-prev-btn">
+                                                <button class="btn btn-black btn-prev nxt-prev-btn" type="button">
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
@@ -1351,7 +1351,7 @@
 
 
                                             <div class="col-12 d-flex justify-content-between">
-                                                <button class="btn btn-black btn-prev nxt-prev-btn">
+                                                <button class="btn btn-black btn-prev nxt-prev-btn" type="button">
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
@@ -1745,9 +1745,9 @@
                 const rawTimeValue = button.textContent.trim(); // Get and trim the text content
 
                 // Update formData with cleaned time value
-                formData.selectedTime = rawTimeValue;
+                // formData.selectedTime = rawTimeValue;
 
-                console.log("Selected Time:", formData.selectedTime); // Debugging
+                // console.log("Selected Time:", formData.selectedTime); // Debugging
             }
 
             function updateCurrentIndex(isNext) {
@@ -1918,12 +1918,12 @@
                         if (selectedDate) {
                             let timeNextBtn = document.getElementById('timeNextBtn');
                             timeNextBtn.removeAttribute('disabled')
+                            // updateCurrentIndex(true);
                         }
                     });
                 })
             }
 
-            enableDateBtn()
 
             function selectTimeZone() {
                 // let timeZones = document.querySelectorAll('.timeZoneCheck');
@@ -1940,6 +1940,7 @@
                     timeZoneNextBtn.setAttribute('disabled', true);
                 }
                 displayTimeSlots();
+                enableDateBtn()
             }
             let timeZones = document.querySelectorAll('.timeZoneCheck');
             timeZones.forEach(ele => {

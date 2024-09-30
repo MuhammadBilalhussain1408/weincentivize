@@ -173,7 +173,7 @@
         });
 
         // Property Details
-        const FormValidation3 = FormValidation.formValidation(wizardPropertyListingFormStep2, {
+        const FormValidation3 = FormValidation.formValidation(wizardPropertyListingFormStep3, {
             fields: {
                 // * Validate the fields here based on your requirements
 
@@ -237,7 +237,7 @@
         }
 
         // Property Features
-        const FormValidation4 = FormValidation.formValidation(wizardPropertyListingFormStep3, {
+        const FormValidation4 = FormValidation.formValidation(wizardPropertyListingFormStep4, {
             fields: {
                 plFirstName: {
                     validators: {
@@ -312,7 +312,7 @@
         });
 
         // Property Area
-        const FormValidation5 = FormValidation.formValidation(wizardPropertyListingFormStep4, {
+        const FormValidation5 = FormValidation.formValidation(wizardPropertyListingFormStep5, {
             fields: {
                 // * Validate the fields here based on your requirements
             },
@@ -333,7 +333,7 @@
         });
 
         // Price Details
-        const FormValidation6 = FormValidation.formValidation(wizardPropertyListingFormStep5, {
+        const FormValidation6 = FormValidation.formValidation(wizardPropertyListingFormStep6, {
             fields: {
                 // * Validate the fields here based on your requirements
             },

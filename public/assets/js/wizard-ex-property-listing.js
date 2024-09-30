@@ -314,6 +314,13 @@
         // Property Area
         const FormValidation5 = FormValidation.formValidation(wizardPropertyListingFormStep5, {
             fields: {
+                plAddress: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter your Address'
+                        }
+                    }
+                },
                 // * Validate the fields here based on your requirements
             },
             plugins: {

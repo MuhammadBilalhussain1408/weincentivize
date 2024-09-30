@@ -1821,6 +1821,11 @@
 
             $('#socialMediaButton').on('click', function(e) {
                 e.preventDefault();
+                if($('#plAddress').val().trim() == ''){
+                    console.log('here');
+
+                    return;
+                }
                 showloader()
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
                 var formData = {

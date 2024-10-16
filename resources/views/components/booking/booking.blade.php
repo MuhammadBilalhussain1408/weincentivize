@@ -970,7 +970,7 @@
 
                                             <div class="col-md-12 p-6">
                                                 <h4 class="text-black">Select Time</h4>
-                                                <div class="d-flex gap-4 flex-wrap mt-4">
+                                                <div class="d-flex gap-4 flex-wrap mt-4" id="timeSlotContainerDIv">
                                                     <button type="button"
                                                         class="btn custom-btn-outline waves-effect">
                                                         12:00am
@@ -1678,16 +1678,15 @@
             });
 
 
-            // Time Slots Script
-            const timeSlotsContainer = document.querySelector(".d-flex.gap-4.flex-wrap.mt-4");
+
             const previousButton = document.querySelector(".btn-prev");
             const nextButton = document.querySelector(".btn-next");
             const nextButtonForm = document.querySelector(".btn-next-form");
 
             const timeSlots = [
-                "12:00am", "12:30am", "1:00am", "1:30am", "2:00am", "2:30am", "3:00am", "3:30am",
-                "4:00am", "4:30am", "5:00am", "5:30am", "6:00pm", "6:30pm", "7:00pm", "7:30pm",
-                "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm"
+                "09:00am", "09:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm",
+                "01:00pm", "01:30pm", "02:00pm", "02:30pm", "03:00pm", "03:30pm", "4:00pm", "4:30pm",
+                "05:00pm"
             ];
 
             function timeToMinutes(time) {
@@ -1702,6 +1701,7 @@
                 let timezone = document.querySelector('.timeZoneCheck:checked')?.value;
                 let nowZ = new Date();
                 const utcOffset = parseInt(timezone);
+                console.log(utcOffset);
 
                 const now = new Date(nowZ.getTime() + (utcOffset * 3600000));
                 console.log(now);
@@ -1712,11 +1712,20 @@
                 const adjustedHours = hours % 12 || 12;
                 const currentTime = `${adjustedHours}:${minutes >= 30 ? '30' : '00'}${period}`;
 
-                return timeSlots.findIndex(time => timeToMinutes(time) >= timeToMinutes(currentTime));
+                let slot =  timeSlots.findIndex(time => timeToMinutes(time) >= timeToMinutes(currentTime));
+                if(slot > 12){
+                    return 0;
+                }
+                return slot;
             }
 
             function displayTimeSlots() {
+                console.log('function is running');
+
+                // Time Slots Script
+            const timeSlotsContainer = document.querySelector("#timeSlotContainerDIv");
                 timeSlotsContainer.innerHTML = "";
+                console.log(timeSlots);
 
                 for (let i = 0; i < timeSlots.length; i++) {
                     let button = document.createElement("button");
@@ -1929,7 +1938,7 @@
                 })
             }
 
-
+            let timeZoneCurrentIndex;
             function selectTimeZone() {
                 // let timeZones = document.querySelectorAll('.timeZoneCheck');
                 // timeZones.forEach(ele => {
@@ -1940,6 +1949,8 @@
                 let timeZoneNextBtn = document.getElementById('timeZoneNextBtn');
                 if (checkedBox) {
                     currentIndex = getCurrentTimeIndex();
+                    console.log(currentIndex);
+
                     timeZoneNextBtn.removeAttribute('disabled')
                 } else {
                     timeZoneNextBtn.setAttribute('disabled', true);

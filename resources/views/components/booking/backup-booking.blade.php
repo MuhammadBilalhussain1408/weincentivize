@@ -857,8 +857,7 @@
                                             </div>
 
                                             <div class="col-12 d-flex justify-content-between">
-                                                <button class="btn btn-label-secondary btn-prev nxt-prev-btn"
-                                                    type="button" disabled>
+                                                <button class="btn btn-label-secondary btn-prev nxt-prev-btn" type="button" disabled>
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
@@ -889,8 +888,7 @@
                                                                 Standard Time (EST) zone
                                                             </h5>
                                                         </span>
-                                                        <input onclick="check(this);"
-                                                            class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-5" id="zone1" />
                                                     </label>
                                                 </div>
@@ -908,8 +906,7 @@
                                                                 Standard Time (CST) zone
                                                             </h5>
                                                         </span>
-                                                        <input onclick="check(this);"
-                                                            class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-6" id="zone2" />
                                                     </label>
                                                 </div>
@@ -927,8 +924,7 @@
                                                                 Standard Time (MST) zone
                                                             </h5>
                                                         </span>
-                                                        <input onclick="check(this);"
-                                                            class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-7" id="zone3" />
                                                     </label>
                                                 </div>
@@ -946,8 +942,7 @@
                                                                 Standard Time (PST) zone
                                                             </h5>
                                                         </span>
-                                                        <input onclick="check(this);"
-                                                            class="form-check-input timeZoneCheck" type="checkbox"
+                                                        <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
                                                             value="-8" id="zone4" />
                                                     </label>
                                                 </div>
@@ -1540,8 +1535,6 @@
     </script>
 
     <script>
-        let userSelectedDate;
-        let userSelectedTimeZone;
         document.addEventListener("DOMContentLoaded", () => {
             let display = document.querySelector(".display");
             let days = document.querySelector(".days");
@@ -1648,7 +1641,6 @@
 
                         // Display selected date
                         const selectedDateStr = e.target.dataset.date;
-                        userSelectedDate = selectedDateStr;
                         selectedDateElement.innerHTML = `Selected Date: ${selectedDateStr}`;
                     });
                 });
@@ -1705,58 +1697,47 @@
                 return hours * 60 + minutes;
             }
 
-            // Function to get the current time index in the time slots array
             function getCurrentTimeIndex() {
                 let timezone = document.querySelector('.timeZoneCheck:checked')?.value;
                 let nowZ = new Date();
-
-                // Adjust the current time based on the selected timezone (UTC offset)
                 const utcOffset = parseInt(timezone);
-                const now = new Date(nowZ.getTime() + (utcOffset * 3600000)); // Adjust for timezone
+                console.log(utcOffset);
 
-                // Convert the user-selected date string to a Date object
-                const selectedDate = new Date(userSelectedDate);
-                const currentDate = new Date();
+                const now = new Date(nowZ.getTime() + (utcOffset * 3600000));
+                console.log(now);
 
-                // Log current details for debugging
-                console.log("Time zone:", timezone);
-                console.log("User Selected date:", userSelectedDate);
-                console.log("Current Time:", now);
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const period = hours >= 12 ? "pm" : "am";
+                const adjustedHours = hours % 12 || 12;
+                const currentTime = `${adjustedHours}:${minutes >= 30 ? '30' : '00'}${period}`;
 
-                if (selectedDate.toDateString() === currentDate.toDateString()) {
-                    // If the selected date is today, calculate the current time index
-                    const hours = now.getHours();
-                    const minutes = now.getMinutes();
-                    const period = hours >= 12 ? "pm" : "am";
-                    const adjustedHours = hours % 12 || 12;
-                    const currentTime = `${adjustedHours}:${minutes >= 30 ? '30' : '00'}${period}`;
-
-                    // Get the index of the current time slot
-                    let slot = timeSlots.findIndex(time => timeToMinutes(time) >= timeToMinutes(currentTime));
-                    return slot > 12 ? 0 : slot;
-                } else {
-                    // If the selected date is not today, show all time slots
+                let slot =  timeSlots.findIndex(time => timeToMinutes(time) >= timeToMinutes(currentTime));
+                if(slot > 12){
                     return 0;
                 }
+                return slot;
             }
 
-            // Function to display time slots
             function displayTimeSlots() {
-                const timeSlotsContainer = document.querySelector("#timeSlotContainerDIv");
+                console.log('function is running');
+
+                // Time Slots Script
+            const timeSlotsContainer = document.querySelector("#timeSlotContainerDIv");
                 timeSlotsContainer.innerHTML = "";
+                console.log(timeSlots);
 
-                currentIndex = getCurrentTimeIndex(); // Ensure the current index is updated
-
-                // Loop through time slots and create buttons
                 for (let i = 0; i < timeSlots.length; i++) {
                     let button = document.createElement("button");
                     button.type = "button";
                     button.className = "btn custom-btn-outline waves-effect timeBtn";
-                    button.textContent = timeSlots[i];
-                    button.disabled = i < currentIndex; // Disable past times if today is selected
+                    button.textContent = timeSlots[i]; // Set text content directly
+                    button.disabled = i < currentIndex; // Disable past times
                     button.addEventListener("click", () => handleTimeSelection(button));
                     timeSlotsContainer.appendChild(button);
                 }
+
+                previousButton.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
             }
 
             function handleTimeSelection(button) {
@@ -1773,7 +1754,9 @@
                 const rawTimeValue = button.textContent.trim(); // Get and trim the text content
 
                 // Update formData with cleaned time value
-                console.log("Selected Time:", rawTimeValue); // Debugging
+                // formData.selectedTime = rawTimeValue;
+
+                // console.log("Selected Time:", formData.selectedTime); // Debugging
             }
 
             function updateCurrentIndex(isNext) {
@@ -1847,7 +1830,7 @@
 
             $('#socialMediaButton').on('click', function(e) {
                 e.preventDefault();
-                if ($('#plAddress').val().trim() == '') {
+                if($('#plAddress').val().trim() == ''){
                     console.log('here');
 
                     return;
@@ -1939,6 +1922,7 @@
             enableCalendarBtn()
 
             function enableDateBtn() {
+                // Select the div with the data-date attribute
                 const dateDiv = document.querySelectorAll('.timeBtn');
 
                 dateDiv.forEach(ele => {
@@ -1947,35 +1931,37 @@
                         const selectedDate = ele.classList.contains('selected');
                         if (selectedDate) {
                             let timeNextBtn = document.getElementById('timeNextBtn');
-                            timeNextBtn.removeAttribute('disabled');
+                            timeNextBtn.removeAttribute('disabled')
+                            // updateCurrentIndex(true);
                         }
                     });
-                });
+                })
             }
 
             let timeZoneCurrentIndex;
-
             function selectTimeZone() {
+                // let timeZones = document.querySelectorAll('.timeZoneCheck');
+                // timeZones.forEach(ele => {
+                //     ele.checked = false;
+                // })
                 let checkedBox = document.querySelector('.timeZoneCheck:checked');
-                let timeZoneNextBtn = document.getElementById('timeZoneNextBtn');
-                console.log('timeZoneNextBtn =>', timeZoneNextBtn);
 
+                let timeZoneNextBtn = document.getElementById('timeZoneNextBtn');
                 if (checkedBox) {
                     currentIndex = getCurrentTimeIndex();
-                    console.log('currentIndex', currentIndex);
+                    console.log(currentIndex);
 
-                    timeZoneNextBtn.removeAttribute('disabled');
+                    timeZoneNextBtn.removeAttribute('disabled')
                 } else {
                     timeZoneNextBtn.setAttribute('disabled', true);
                 }
-                displayTimeSlots(); // Display time slots after selecting a timezone
+                displayTimeSlots();
+                enableDateBtn()
             }
-
-            // Attach event listeners to time zone checkboxes
             let timeZones = document.querySelectorAll('.timeZoneCheck');
             timeZones.forEach(ele => {
                 ele.addEventListener('change', selectTimeZone);
-            });
+            })
         });
 
         function showloader(loaderId = null) {
@@ -2045,7 +2031,7 @@
                         let radios = document.querySelectorAll('input[name="status"]');
                         for (const radio of radios) {
                             radio.checked = (radio.value === data
-                                .status); // Check the radio if its value matches
+                            .status); // Check the radio if its value matches
                         }
                         toastr.success('Record Fetched Successfully');
                     } else {
@@ -2066,21 +2052,27 @@
     </script>
 
     <script>
-        function check(input) {
+        function check(input)
+        {
 
             var checkboxes = document.getElementsByClassName("timeZoneCheck");
 
-            for (var i = 0; i < checkboxes.length; i++) {
+            for(var i = 0; i < checkboxes.length; i++)
+            {
                 //uncheck all
-                if (checkboxes[i].checked == true) {
+                if(checkboxes[i].checked == true)
+                {
                     checkboxes[i].checked = false;
                 }
             }
 
             //set checked of clicked object
-            if (input.checked == true) {
+            if(input.checked == true)
+            {
                 input.checked = false;
-            } else {
+            }
+            else
+            {
                 input.checked = true;
             }
         }

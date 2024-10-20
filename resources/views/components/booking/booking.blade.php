@@ -889,7 +889,7 @@
                                                             </h5>
                                                         </span>
                                                         <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
-                                                            value="-5" id="zone1" />
+                                                            value="+3" id="zone1" />
                                                     </label>
                                                 </div>
                                             </div>
@@ -907,7 +907,7 @@
                                                             </h5>
                                                         </span>
                                                         <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
-                                                            value="-6" id="zone2" />
+                                                            value="+2" id="zone2" />
                                                     </label>
                                                 </div>
                                             </div>
@@ -925,7 +925,7 @@
                                                             </h5>
                                                         </span>
                                                         <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
-                                                            value="-7" id="zone3" />
+                                                            value="+1" id="zone3" />
                                                     </label>
                                                 </div>
                                             </div>
@@ -943,7 +943,7 @@
                                                             </h5>
                                                         </span>
                                                         <input onclick="check(this);" class="form-check-input timeZoneCheck" type="checkbox"
-                                                            value="-8" id="zone4" />
+                                                            value="0" id="zone4" />
                                                     </label>
                                                 </div>
                                             </div>
@@ -1706,8 +1706,8 @@
                 const now = new Date(nowZ.getTime() + (utcOffset * 3600000));
                 console.log(now);
 
-                const hours = now.getHours();
-                const minutes = now.getMinutes();
+                const hours = nowZ.getHours();
+                const minutes = nowZ.getMinutes();
                 const period = hours >= 12 ? "pm" : "am";
                 const adjustedHours = hours % 12 || 12;
                 const currentTime = `${adjustedHours}:${minutes >= 30 ? '30' : '00'}${period}`;
@@ -1720,26 +1720,46 @@
             }
 
             function displayTimeSlots() {
-                console.log('function is running');
+                // console.log('function is running');
+                let timezone = document.querySelector('.timeZoneCheck:checked')?.value;
+                let currentDateTime = new Date();
+                const startTime = new Date(currentDateTime.toLocaleDateString('en-US'));
+                startTime.setHours(9, 0, 0); // Set to 09:00 AM
+                const endTime = new Date(currentDateTime.toLocaleDateString('en-US'));
+                endTime.setHours(17, 0, 0); // Set to 05:00 PM
 
+                // console.log('startTime',startTime,'endTime', endTime);
+
+                // console.log('current datetime',currentDateTime);
+
+                const utcOffset = parseInt(timezone);
+                console.log(utcOffset);
+
+                const timeZoneDateTime = new Date(currentDateTime.getTime() + (utcOffset * 3600000));
+                // console.log('timezone timedate',timeZoneDateTime);
                 // Time Slots Script
-            const timeSlotsContainer = document.querySelector("#timeSlotContainerDIv");
+                const timeSlotsContainer = document.querySelector("#timeSlotContainerDIv");
                 timeSlotsContainer.innerHTML = "";
-                console.log(timeSlots);
 
-                for (let i = 0; i < timeSlots.length; i++) {
+                while (startTime <= endTime) {
                     let button = document.createElement("button");
                     button.type = "button";
                     button.className = "btn custom-btn-outline waves-effect timeBtn";
-                    button.textContent = timeSlots[i]; // Set text content directly
-                    button.disabled = i < currentIndex; // Disable past times
+                    button.textContent = formatTime(startTime);
+                    if (startTime < timeZoneDateTime) {
+                        button.disabled = true;
+                    }
                     button.addEventListener("click", () => handleTimeSelection(button));
                     timeSlotsContainer.appendChild(button);
+                    // Increment by 30 minutes
+                    startTime.setMinutes(startTime.getMinutes() + 30);
                 }
 
                 previousButton.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
             }
-
+            function formatTime(date) {
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+            }
             function handleTimeSelection(button) {
                 // Remove highlight from any previously selected button
                 const selectedButton = document.querySelector(".btn.selected");
@@ -1948,7 +1968,7 @@
 
                 let timeZoneNextBtn = document.getElementById('timeZoneNextBtn');
                 if (checkedBox) {
-                    currentIndex = getCurrentTimeIndex();
+                    // currentIndex = getCurrentTimeIndex();
                     console.log(currentIndex);
 
                     timeZoneNextBtn.removeAttribute('disabled')

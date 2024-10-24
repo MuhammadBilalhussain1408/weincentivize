@@ -950,7 +950,7 @@
 
 
                                             <div class="col-12 d-flex justify-content-between">
-                                                <button class="btn btn-black btn-prev nxt-prev-btn">
+                                                <button class="btn btn-black btn-prev nxt-prev-btn" type="button">
                                                     <i class="ti ti-arrow-left ti-xs me-sm-2 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                                 </button>
@@ -1723,6 +1723,9 @@
                 // console.log('function is running');
                 let timezone = document.querySelector('.timeZoneCheck:checked')?.value;
                 let currentDateTime = new Date();
+                let selectedDateTime = new Date(selectedDate.dataset.date)
+                // console.log(selectedDateTime.toDateString() !== currentDateTime.toDateString());
+
                 const startTime = new Date(currentDateTime.toLocaleDateString('en-US'));
                 startTime.setHours(9, 0, 0); // Set to 09:00 AM
                 const endTime = new Date(currentDateTime.toLocaleDateString('en-US'));
@@ -1746,7 +1749,7 @@
                     button.type = "button";
                     button.className = "btn custom-btn-outline waves-effect timeBtn";
                     button.textContent = formatTime(startTime);
-                    if (startTime < timeZoneDateTime) {
+                    if (startTime < timeZoneDateTime && selectedDateTime.toDateString() == currentDateTime.toDateString()) {
                         button.disabled = true;
                     }
                     button.addEventListener("click", () => handleTimeSelection(button));

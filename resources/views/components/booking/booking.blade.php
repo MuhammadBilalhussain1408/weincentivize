@@ -1630,6 +1630,15 @@
                 const dayElements = document.querySelectorAll(".days div:not(.disabled)");
                 dayElements.forEach((day) => {
                     day.addEventListener("click", (e) => {
+                        // const InputDate = new Date(selectedDate);
+                        // const day = InputDate.getDay(); // Get the day of the week (0 = Sunday, 6 = Saturday)
+
+                        // // If the selected date is Saturday (6) or Sunday (0)
+                        // if (day === 0 || day === 6) {
+                        //     alert('Weekends are not allowed. Please select a weekday.');
+                        //     selectedDate.value = ''; // Clear the input
+                        //     return
+                        // }
                         // Remove highlight from the previously selected date
                         if (selectedDate) {
                             selectedDate.classList.remove("selected-date");
@@ -1723,14 +1732,27 @@
                 // console.log('function is running');
                 let timezone = document.querySelector('.timeZoneCheck:checked')?.value;
                 let currentDateTime = new Date();
-                let selectedDateTime = new Date(selectedDate.dataset.date)
+                let selectedDateTime = new Date(selectedDate.dataset.date);
                 // console.log(selectedDateTime.toDateString() !== currentDateTime.toDateString());
 
                 const startTime = new Date(currentDateTime.toLocaleDateString('en-US'));
-                startTime.setHours(9, 0, 0); // Set to 09:00 AM
                 const endTime = new Date(currentDateTime.toLocaleDateString('en-US'));
+                if(timezone == 0){
+                startTime.setHours(9, 0, 0); // Set to 09:00 AM
                 endTime.setHours(17, 0, 0); // Set to 05:00 PM
-
+                } else if(timezone == '+3'){ //PT
+                    startTime.setHours(12, 0, 0);
+                    endTime.setHours(20, 0, 0);
+                } else if(timezone == '+3'){ //ET
+                    startTime.setHours(12, 0, 0); // Set to 09:00 AM
+                    endTime.setHours(20, 0, 0); // Set to 05:00 PM
+                } else if(timezone == '+2'){ // CT
+                    startTime.setHours(11, 0, 0);
+                    endTime.setHours(19, 0, 0);
+                } else if(timezone == '+1'){ // MT
+                    startTime.setHours(10, 0, 0);
+                    endTime.setHours(18, 0, 0);
+                }
                 // console.log('startTime',startTime,'endTime', endTime);
 
                 // console.log('current datetime',currentDateTime);
@@ -1738,7 +1760,7 @@
                 const utcOffset = parseInt(timezone);
                 console.log(utcOffset);
 
-                const timeZoneDateTime = new Date(currentDateTime.getTime() + (utcOffset * 3600000));
+                // const timeZoneDateTime = new Date(currentDateTime.getTime() + (utcOffset * 3600000));
                 // console.log('timezone timedate',timeZoneDateTime);
                 // Time Slots Script
                 const timeSlotsContainer = document.querySelector("#timeSlotContainerDIv");
@@ -1749,7 +1771,7 @@
                     button.type = "button";
                     button.className = "btn custom-btn-outline waves-effect timeBtn";
                     button.textContent = formatTime(startTime);
-                    if (startTime < timeZoneDateTime && selectedDateTime.toDateString() == currentDateTime.toDateString()) {
+                    if (startTime < currentDateTime && selectedDateTime.toDateString() == currentDateTime.toDateString()) {
                         button.disabled = true;
                     }
                     button.addEventListener("click", () => handleTimeSelection(button));

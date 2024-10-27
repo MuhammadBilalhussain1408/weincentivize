@@ -1630,6 +1630,8 @@
                 const dayElements = document.querySelectorAll(".days div:not(.disabled)");
                 dayElements.forEach((day) => {
                     day.addEventListener("click", (e) => {
+                    let day = e.target.dataset.date.substring(0, 3)
+                    if(day != 'Sun' & day != 'Sat'){
                         // const InputDate = new Date(selectedDate);
                         // const day = InputDate.getDay(); // Get the day of the week (0 = Sunday, 6 = Saturday)
 
@@ -1651,6 +1653,9 @@
                         // Display selected date
                         const selectedDateStr = e.target.dataset.date;
                         selectedDateElement.innerHTML = `Selected Date: ${selectedDateStr}`;
+                    } else {
+                        toastr.error('Weekend are off for booking');
+                    }
                     });
                 });
             }

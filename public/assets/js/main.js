@@ -494,10 +494,12 @@ if (typeof $ !== 'undefined') {
       }
       // Search API AJAX call
       var searchData = $.ajax({
-        url: window.ASSET_URL + 'assets/json/' + searchJson, //? Use your own search api instead
+        url: '/booking/all', //? Use your own search api instead
         dataType: 'json',
         async: false
       }).responseJSON;
+      console.log(searchData);
+
       // Init typeahead on searchInput
       searchInput.each(function () {
         var $this = $(this);

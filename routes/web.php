@@ -37,11 +37,12 @@ Route::get('existing-booking/{id}', [BookingController::class, 'existingBooking'
 // Route::view('/appointment/booking', 'components.booking.booking')->name('appointment.booking');
 Route::middleware('auth')->group(function () {
     Route::view('/admin/dashboard', 'components.dashboard')->name('admin.dashboard');
+    Route::get('/booking/all', [BookingController::class, 'allBookings']);
 
 
 
     Route::view('/admin/appointment-list', 'components.booking.booking-list')->name('admin.appointment.list');
-    Route::view('/admin/appointment-list/detail', 'components.booking.booking-detail')->name('admin.appointment.detail');
+    Route::get('/admin/appointment-list/detail/{id}', [BookingController::class, 'details'])->name('admin.appointment.detail');
 });
 
 

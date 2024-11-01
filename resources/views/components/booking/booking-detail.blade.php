@@ -100,6 +100,7 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->booking_id}}"
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -110,6 +111,7 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->selectedDate}}"
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -120,6 +122,7 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->selectedTime}}"
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -130,6 +133,7 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->plPropertySaleRent}}"
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -140,6 +144,7 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->firstName}}"
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -149,6 +154,7 @@
                                                     class="form-control"
                                                     id="ecommerce-product-name"
                                                     placeholder=""
+                                                    value="{{$booking->lastName}}"
                                                     name="productTitle"
                                                     aria-label="Product title" />
                                             </div>
@@ -160,6 +166,7 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->email}}"
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -170,6 +177,8 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->contact}}"
+
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -180,6 +189,8 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->propertyType}}"
+
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -190,6 +201,8 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->zipCode}}"
+
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -200,6 +213,8 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->country}}"
+
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-4">
@@ -210,6 +225,8 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->state}}"
+
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-6">
@@ -220,6 +237,8 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->website}}"
+
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-6">
@@ -230,11 +249,14 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->businessName}}"
                                                     aria-label="Product title" />
                                             </div>
                                             <div class="mb-6 col-md-12">
                                                 <label class="form-label" for="ecommerce-product-name">Address</label>
-                                                <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                <textarea id="autosize-demo" rows="3" class="form-control">
+                                                    {{$booking->address}}
+                                                </textarea>
                                             </div>
                                             <div class="mb-6 col-md-6">
                                                 <label class="form-label" for="ecommerce-product-name">Are You Looking To</label>
@@ -244,6 +266,8 @@
                                                     id="ecommerce-product-name"
                                                     placeholder=""
                                                     name="productTitle"
+                                                    value="{{$booking->status}}"
+
                                                     aria-label="Product title" />
                                             </div>
                                         </div>

@@ -38,7 +38,7 @@
                                 <table class="datatables-basic table">
                                     <thead>
                                     <tr>
-                                        <th></th>
+                                        {{-- <th></th> --}}
                                         <th></th>
                                         <th>id</th>
                                         <th>Booking ID</th>

@@ -7,9 +7,50 @@ use App\Models\Booking; // Ensure the path is correct
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerBookingMail;
 use App\Mail\AdminBookingMail;
+use Yajra\DataTables\Facades\DataTables;
 
 class BookingController extends Controller
 {
+    function allBookings(Request $request)
+    {
+        // dd($request);
+        $bookings = Booking::all();
+        // dd($bookings);
+        return Datatables::of($bookings)
+            ->addIndexColumn()
+            ->addColumn('name', function ($row) {
+                $btn = $row->firstName.' '.$row->lastName;
+                return $btn;
+            })
+            ->addColumn('booking_status', function ($row) {
+                $btn = $row->booking_status;
+                return $btn;
+            })
+            ->addColumn('created_at', function ($row) {
+                $btn = $row->created_at->format('Y-m-d H:i');
+                return $btn;
+            })
+            ->addColumn('action', function ($row) {
+           $btn = '<div class="d-inline-block">
+              <a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical ti-md"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end m-0">
+              <li><a href="/admin/appointment-list/detail/'.$row->id.'" class="dropdown-item">Details</a></li>
+              <li><a href="javascript:;" class="dropdown-item">Archive</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
+              </ul>
+              </div>';
+                // $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+    function details($id){
+        // dd($id);
+        $booking = Booking::where('id',$id)->first();
+        return view('components.booking.booking-detail', compact('booking'));
+    }
     /**
      * Display a listing of the resource.
      */

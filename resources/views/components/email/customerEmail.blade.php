@@ -108,7 +108,9 @@
                                         </p>
                                         <p style=" font-size: 16px; margin-top: 0; text-align: center;">
                                             Your Booking ID number is: <span style="font-weight: bold;">{{ $booking->booking_id }}.</span>
-                                            Thank you for scheduling a booking with us. A representative from our team will get back to you shortly.
+                                            Thank you for booking with us! We have received your appointment request, and it is currently
+                                            pending confirmation by our team. One of our team members will review and confirm your appointment shortly.
+                                            You’ll receive a confirmation email once your booking is approved.
                                         </p>
                                         <table>
                                             <tr>

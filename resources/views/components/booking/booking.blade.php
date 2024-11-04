@@ -1654,7 +1654,7 @@
                         const selectedDateStr = e.target.dataset.date;
                         selectedDateElement.innerHTML = `Selected Date: ${selectedDateStr}`;
                     } else {
-                        toastr.error('Weekend are off for booking');
+                        toastr.error('Weekends Are Not Allowed For Booking');
                     }
                     });
                 });

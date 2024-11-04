@@ -84,17 +84,17 @@
                                 </tr>
                                 <tr>
                                     <td style="font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif; font-size: 12px; padding-left: 48px; padding-right: 48px; --text-opacity: 1; color: #eceff1; color: rgba(236, 239, 241, var(--text-opacity));">
-                                        <!--                                        <p align="center" style="cursor: default; margin-bottom: 16px;">-->
-                                        <!--                                            <a href="https://www.facebook.com/pixinvents" style="&#45;&#45;text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(&#45;&#45;text-opacity)); text-decoration: none;"><img src="https://cdn.iconscout.com/icon/free/png-512/facebook-logo-2019-1597680-1350125.png" width="17" alt="Facebook" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>-->
-                                        <!--                                            &bull;-->
-                                        <!--                                            <a href="https://twitter.com/pixinvents" style="&#45;&#45;text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(&#45;&#45;text-opacity)); text-decoration: none;"><img src="https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-2-1.png" width="17" alt="Twitter" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>-->
-                                        <!--                                            &bull;-->
-                                        <!--                                            <a href="https://www.instagram.com/pixinvents" style="&#45;&#45;text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(&#45;&#45;text-opacity)); text-decoration: none;"><img src="https://pngimg.com/uploads/instagram/instagram_PNG10.png" width="17" alt="Instagram" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>-->
-                                        <!--                                        </p>-->
+            <!--                                        <p align="center" style="cursor: default; margin-bottom: 16px;">-->
+            <!--                                            <a href="https://www.facebook.com/pixinvents" style="&#45;&#45;text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(&#45;&#45;text-opacity)); text-decoration: none;"><img src="https://cdn.iconscout.com/icon/free/png-512/facebook-logo-2019-1597680-1350125.png" width="17" alt="Facebook" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>-->
+            <!--                                            &bull;-->
+            <!--                                            <a href="https://twitter.com/pixinvents" style="&#45;&#45;text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(&#45;&#45;text-opacity)); text-decoration: none;"><img src="https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-2-1.png" width="17" alt="Twitter" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>-->
+            <!--                                            &bull;-->
+            <!--                                            <a href="https://www.instagram.com/pixinvents" style="&#45;&#45;text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(&#45;&#45;text-opacity)); text-decoration: none;"><img src="https://pngimg.com/uploads/instagram/instagram_PNG10.png" width="17" alt="Instagram" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>-->
+            <!--                                        </p>-->
                                         <p style="color: black; text-align: center">
                                             Use of our service and website is subject to our
-                                            <a href="https://pixinvent.com/" class="hover-underline" style="--text-opacity: 1; color: #7367f0; color: rgba(115, 103, 240, var(--text-opacity)); text-decoration: none;">Terms of Use</a> and
-                                            <a href="https://pixinvent.com/" class="hover-underline" style="--text-opacity: 1; color: #7367f0; color: rgba(115, 103, 240, var(--text-opacity)); text-decoration: none;">Privacy Policy</a>.
+                                            <a href="https://weincentivize.com/privacy-policy" class="hover-underline" style="--text-opacity: 1; color: #7367f0; color: rgba(115, 103, 240, var(--text-opacity)); text-decoration: none;">Terms of Use</a> and
+                                            <a href="https://weincentivize.com/terms-and-conditions" class="hover-underline" style="--text-opacity: 1; color: #7367f0; color: rgba(115, 103, 240, var(--text-opacity)); text-decoration: none;">Privacy Policy</a>.
                                         </p>
                                     </td>
                                 </tr>

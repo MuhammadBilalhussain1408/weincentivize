@@ -129,7 +129,7 @@
                                                 </td>
                                                 <td style="padding: 5px;font-size: 16px; color: black; font-weight: 400;border: 1px solid #000;">
                                                     <span id="bookingId">
-                                                        [Booking ID]
+                                                        {{$booking->booking_id}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -141,7 +141,7 @@
                                                 </td>
                                                 <td style="padding: 5px;border: 1px solid #000;font-size: 16px; color: black; font-weight: 400; width: 75%;">
                                                     <span id="serviceName">
-                                                        [Service Name]
+                                                        {{$serviceName}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -152,7 +152,7 @@
                                                 </td>
                                                 <td style="padding: 5px;border: 1px solid #000;font-size: 16px; color: black; font-weight: 400; width: 75%;">
                                                     <span id="dateTime">
-                                                        [Date and Time]
+                                                        {{$dateTime}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -164,7 +164,7 @@
                                                 </td>
                                                 <td style="padding: 5px;border: 1px solid #000;font-size: 16px; color: black; font-weight: 400; width: 75%;">
                                                     <span id="location">
-                                                        [Location Address]
+                                                        {{$location}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -176,7 +176,7 @@
                                                 </td>
                                                 <td style="padding: 5px;border: 1px solid #000;font-size: 16px; color: black; font-weight: 400; width: 75%;">
                                                     <span id="contactPerson">
-                                                        [Contact Name]
+                                                        {{$contactPerson}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -188,7 +188,7 @@
                                                 </td>
                                                 <td style="padding: 5px;border: 1px solid #000;font-size: 16px; color: black; font-weight: 400; width: 75%;">
                                                     <span id="contactNumber">
-                                                        [Contact Number]
+                                                        {{$contactNumber}}
                                                     </span>
                                                 </td>
                                             </tr>

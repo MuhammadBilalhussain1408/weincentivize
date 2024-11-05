@@ -115,12 +115,12 @@ class BookingController extends Controller
             // Send email to admin with booking details
             Mail::to('manibahi321@gmail.com')->send(new AdminBookingMail($booking));
             Mail::to('info@weincentivize.com')->send(new AdminBookingMail($booking));
-
+            $dateTime = $booking->selectedDate . ' ' . $booking->selectedTime;
             return response()->json([
                 'success' => true,
                 'bookingId' => $booking->booking_id,
                 'serviceName' => $booking->propertyType,
-                'dateTime' => now()->format('D - M d Y - h:ia'), // or any relevant date/time
+                'dateTime' => Carbon::parse($dateTime)->format('D - M d Y - h:ia'), // or any relevant date/time
                 'location' => $booking->address,
                 'contactPerson' => $booking->firstName . ' ' . $booking->lastName,
                 'contactNumber' => $booking->contact,

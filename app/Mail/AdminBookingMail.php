@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -37,7 +38,7 @@ class AdminBookingMail extends Mailable
         ->with([
             'bookingId' => $bookingId,
             'serviceName' => $serviceName,
-            'dateTime' => $dateTime,
+            'dateTime' => Carbon::parse($dateTime)->format('D - M d Y - h:ia'),
             'location' => $location,
             'contactPerson' => $contactPerson,
             'contactNumber' => $contactNumber,

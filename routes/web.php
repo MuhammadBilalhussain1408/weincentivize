@@ -36,6 +36,8 @@ Route::get('existing-booking/{id}', [BookingController::class, 'existingBooking'
 
 // Route::view('/appointment/booking', 'components.booking.booking')->name('appointment.booking');
 Route::middleware('auth')->group(function () {
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
     Route::view('/admin/dashboard', 'components.dashboard')->name('admin.dashboard');
     Route::get('/booking/all', [BookingController::class, 'allBookings']);
 

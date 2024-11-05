@@ -19,7 +19,7 @@ class BookingController extends Controller
         return Datatables::of($bookings)
             ->addIndexColumn()
             ->addColumn('name', function ($row) {
-                $btn = $row->firstName.' '.$row->lastName;
+                $btn = $row->firstName . ' ' . $row->lastName;
                 return $btn;
             })
             ->addColumn('booking_status', function ($row) {
@@ -31,11 +31,11 @@ class BookingController extends Controller
                 return $btn;
             })
             ->addColumn('action', function ($row) {
-           $btn = '<div class="d-inline-block">
+                // <li><a type="button"data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="reason('.$row->id.')" class="dropdown-item">Approve</a></li>
+                $btn = '<div class="d-inline-block">
               <a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical ti-md"></i></a>
               <ul class="dropdown-menu dropdown-menu-end m-0">
-              <li><a href="/admin/appointment-list/detail/'.$row->id.'" class="dropdown-item">Details</a></li>
-              <li><a href="javascript:;" class="dropdown-item">Archive</a></li>
+              <li><a href="/admin/appointment-list/detail/' . $row->id . '" class="dropdown-item">Details</a></li>
               <div class="dropdown-divider"></div>
               <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
               </ul>
@@ -46,9 +46,10 @@ class BookingController extends Controller
             ->rawColumns(['action'])
             ->make(true);
     }
-    function details($id){
+    function details($id)
+    {
         // dd($id);
-        $booking = Booking::where('id',$id)->first();
+        $booking = Booking::where('id', $id)->first();
         return view('components.booking.booking-detail', compact('booking'));
     }
     /**
@@ -119,7 +120,7 @@ class BookingController extends Controller
                 'success' => true,
                 'bookingId' => $booking->booking_id,
                 'serviceName' => $booking->propertyType,
-                'dateTime' => now()->format('Y-m-d H:i:s'), // or any relevant date/time
+                'dateTime' => now()->format('D - M d Y - h:ia'), // or any relevant date/time
                 'location' => $booking->address,
                 'contactPerson' => $booking->firstName . ' ' . $booking->lastName,
                 'contactNumber' => $booking->contact,

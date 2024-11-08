@@ -37,7 +37,7 @@ class CustomerBookingMail extends Mailable
         $contactNumber = $this->booking->contact;
 
         // Build the email
-        return $this->subject('Booking Successful')->view('components.email.customerEmail')
+        return $this->subject('Appointment Booking Received - Awaiting Confirmation')->view('components.email.customerEmail')
             ->with([
                 'booking' => $booking,
                 'contactPerson' => $contactPerson,
@@ -45,7 +45,6 @@ class CustomerBookingMail extends Mailable
                 'serviceName' => $serviceName,
                 'dateTime' => Carbon::parse($dateTime)->format('D - M d Y - h:ia'),
                 'location' => $location,
-                'contactPerson' => $contactPerson,
                 'contactNumber' => $contactNumber,
             ]);
     }

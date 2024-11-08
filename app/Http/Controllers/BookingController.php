@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomerBookingMail;
 use App\Mail\AdminBookingMail;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {

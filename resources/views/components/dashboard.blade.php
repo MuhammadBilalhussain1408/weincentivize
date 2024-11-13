@@ -848,27 +848,6 @@
                         </div>
                         <!--/ Source Visit -->
 
-                        <!-- Projects table -->
-                        <div class="col-xxl-8">
-                            <div class="card">
-                                <div class="card-datatable table-responsive">
-                                    <table class="datatables-projects table table-sm">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th>Project</th>
-                                            <th>Leader</th>
-                                            <th>Team</th>
-                                            <th class="w-px-200">Progress</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ Projects table -->
                     </div>
                 </div>
                 <!-- / Content -->

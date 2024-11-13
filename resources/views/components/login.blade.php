@@ -81,6 +81,12 @@
         a:hover {
             color: black;
         }
+        .form-control:focus, .form-select:focus {
+            border-color: #058283 !important;
+        }
+        .input-group:focus-within .form-control, .input-group:focus-within .input-group-text {
+            border-color: #058283 !important;
+        }
     </style>
 </head>
 
@@ -135,7 +141,7 @@
                                         <input class="form-check-input" type="checkbox" id="remember-me" name="remember"/>
                                         <label class="form-check-label" for="remember-me"> Remember Me </label>
                                     </div>
-                                    <a href="auth-forgot-password-basic.html">
+                                    <a href="javascript:void(0);">
                                         <p class="mb-0">Forgot Password?</p>
                                     </a>
                                 </div>
@@ -146,7 +152,7 @@
                         </form>
                     <p class="text-center">
                         <span>New on our platform?</span>
-                        <a href="auth-register-basic.html">
+                        <a href="javascript:void(0);">
                             <span>Create an account</span>
                         </a>
                     </p>

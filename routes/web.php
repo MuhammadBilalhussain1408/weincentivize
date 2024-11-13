@@ -13,9 +13,13 @@ use App\Http\Controllers\BookingController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
+
+
 */
 // In your routes/web.php
 /*
+
+
 |--------------------------------------------------------------------------
 | Public Routes
 |--------------------------------------------------------------------------
@@ -29,6 +33,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 | Authenticated Routes
 |--------------------------------------------------------------------------
 */
+
+
 // Route definition using the controller method
 Route::get('/appointment/booking', [BookingController::class, 'index'])->name('appointment.booking');
 Route::post('/booking/store', [BookingController::class, 'store']);
@@ -48,4 +54,3 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 
-Route::view('/bilal','components.bilal');

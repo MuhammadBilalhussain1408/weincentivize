@@ -8,6 +8,7 @@
 <meta name="description" content="" />
 
 <!-- Favicon -->
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
 
 <!-- Fonts -->

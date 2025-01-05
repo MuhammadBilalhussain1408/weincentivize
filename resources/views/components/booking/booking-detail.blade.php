@@ -1,39 +1,41 @@
 @extends('layouts.master')
 @section('content')
-<style>
-    .form-label, .col-form-label {
-        color: #000000;
-        font-size: 18px;
-        font-weight: 500;
-    }
-    .form-control {
-        font-size: 19px;
-        font-weight: 600;
-        padding: 11px 10px 11px 10px;
-    }
-    .form-control {
-        font-size: 17px;
-        font-weight: 600;
-        padding: 7px 10px 7px 10px;
-        color: black;
-    }
-</style>
+    <style>
+        .form-label, .col-form-label {
+            color: #000000;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            font-size: 19px;
+            font-weight: 600;
+            padding: 11px 10px 11px 10px;
+        }
+
+        .form-control {
+            font-size: 17px;
+            font-weight: 600;
+            padding: 7px 10px 7px 10px;
+            color: black;
+        }
+    </style>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
 
-                @include('include.menu')
+        @include('include.menu')
 
-            <!-- / Menu -->
+        <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
 
-                @include('include.nav')
+            @include('include.nav')
 
-                <!-- / Navbar -->
+            <!-- / Navbar -->
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
@@ -46,7 +48,8 @@
                                 class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
                                 <div class="d-flex flex-column justify-content-center">
                                     <h4 class="card-tile mb-0 fw-bold text-uppercase">Appointment Details</h4>
-                                    <p class="mb-0 fw-medium" style="color: #058283;">Abdul Rehman Appointment Details</p>
+                                    <p class="mb-0 fw-medium text-capitalize" style="color: #058283;">{{$booking->firstName}} {{$booking->lastName}} Appointment
+                                        Details</p>
                                 </div>
                                 <div class="d-flex align-content-center flex-wrap gap-4">
                                     <div class="btn-group" id="dropdown-icon-demo">
@@ -59,26 +62,15 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"
-                                                ><i class="ti ti-chevron-right scaleX-n1-rtl"></i>Action</a
+                                                <a href="javascript:void(0);"
+                                                   class="dropdown-item d-flex align-items-center"
+                                                ><i class="ti ti-chevron-right scaleX-n1-rtl"></i>Approved</a
                                                 >
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"
-                                                ><i class="ti ti-chevron-right scaleX-n1-rtl"></i>Another action</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"
-                                                ><i class="ti ti-chevron-right scaleX-n1-rtl"></i>Something else here</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider" />
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"
-                                                ><i class="ti ti-chevron-right scaleX-n1-rtl"></i>Separated link</a
+                                                <a href="javascript:void(0);"
+                                                   class="dropdown-item d-flex align-items-center"
+                                                ><i class="ti ti-chevron-right scaleX-n1-rtl"></i>Canceled</a
                                                 >
                                             </li>
                                         </ul>
@@ -92,184 +84,232 @@
                                     <!-- Product Information -->
                                     <div class="card mb-6">
                                         <div class="card-body row">
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Appointment ID</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->booking_id}}"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Date</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->selectedDate}}"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Time</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->selectedTime}}"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Customer Type</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->plPropertySaleRent}}"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">First Name</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->firstName}}"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Last Name</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    value="{{$booking->lastName}}"
-                                                    name="productTitle"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Email</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->email}}"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Contact</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->contact}}"
 
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Service Type</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->propertyType}}"
+                                            <div class="table-responsive pt-10 pb-10">
+                                                <table class="table table-bordered"
+                                                       style="text-align: left; border-color: #b3b3b3;">
+                                                    <tbody class="table-border-bottom-0">
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Appointment ID
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->booking_id}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Date
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->selectedDate}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Time
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->selectedTime}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    TimeZone
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
 
-                                                    aria-label="Product title" />
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Customer Type
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->plPropertySaleRent}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    First Name
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->firstName}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Last Name
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->lastName}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Email
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->email}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Contact
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->contact}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Service Type
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->propertyType}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Service Type
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->propertyType}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Zip Code
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->zipCode}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Country
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->country}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    State
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->state}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Current Website or Social Media Page
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->website}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Name Of Business or Brand
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->businessName}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Address
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->address}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="fw-bold" style="font-weight: bold; color: black; font-size: 20px; width: 25%;">
+                                                                    Are You Looking To
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 20px; color: black; font-weight: 400; width: 75%;">
+                                                                <span id="bookingId">
+                                                                    {{$booking->status}}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Zip Code</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->zipCode}}"
 
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">Country</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->country}}"
 
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-4">
-                                                <label class="form-label" for="ecommerce-product-name">State</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->state}}"
-
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-6">
-                                                <label class="form-label" for="ecommerce-product-name">Current Website or Social Media Page</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->website}}"
-
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-6">
-                                                <label class="form-label" for="ecommerce-product-name">Name Of Business or Brand</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->businessName}}"
-                                                    aria-label="Product title" />
-                                            </div>
-                                            <div class="mb-6 col-md-12">
-                                                <label class="form-label" for="ecommerce-product-name">Address</label>
-                                                <textarea id="autosize-demo" rows="3" class="form-control">
-                                                    {{$booking->address}}
-                                                </textarea>
-                                            </div>
-                                            <div class="mb-6 col-md-6">
-                                                <label class="form-label" for="ecommerce-product-name">Are You Looking To</label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="ecommerce-product-name"
-                                                    placeholder=""
-                                                    name="productTitle"
-                                                    value="{{$booking->status}}"
-
-                                                    aria-label="Product title" />
-                                            </div>
                                         </div>
                                     </div>
                                     <!-- /Product Information -->

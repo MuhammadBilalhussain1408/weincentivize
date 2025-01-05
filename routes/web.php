@@ -51,6 +51,12 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::view('/admin/appointment-list', 'components.booking.booking-list')->name('admin.appointment.list');
     Route::get('/admin/appointment-list/detail/{id}', [BookingController::class, 'details'])->name('admin.appointment.detail');
+
+    Route::view('/admin/user-account', 'components.user.account');
+    Route::view('/admin/user-security', 'components.user.security');
+
+
+
 });
 
 

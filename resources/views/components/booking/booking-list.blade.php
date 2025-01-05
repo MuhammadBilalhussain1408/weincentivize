@@ -9,6 +9,14 @@
         .table:not(.table-borderless):not(.table-dark)> :not(caption)>*:not(.table-dark)>* {
             color: black;
         }
+        span.card-heading {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .avatar {
+            top: 4px;
+        }
+
     </style>
 
     <!-- Layout wrapper -->
@@ -33,6 +41,86 @@
                     <!-- Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y">
+
+                        <div class="row g-6 mb-6">
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start justify-content-between">
+                                            <div class="content-left">
+                                                <span class="text-black card-heading">Total <br> Appointments</span>
+                                                <div class="d-flex align-items-center my-1">
+                                                    <h4 class="mb-0 me-2">21,459</h4>
+                                                </div>
+                                            </div>
+                                            <div class="avatar">
+                                                  <span class="avatar-initial rounded bg-label-primary">
+                                                    <i class="fa-solid fa-calendar-check fa-2x"></i>
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start justify-content-between">
+                                            <div class="content-left">
+                                                <span class="text-heading card-heading">Approved <br> Appointments</span>
+                                                <div class="d-flex align-items-center my-1">
+                                                    <h4 class="mb-0 me-2">4,567</h4>
+                                                </div>
+                                            </div>
+                                            <div class="avatar">
+                                                  <span class="avatar-initial rounded bg-label-success">
+                                                    <i class="fa-solid fa-calendar-check fa-2x"></i>
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start justify-content-between">
+                                            <div class="content-left">
+                                                <span class="text-heading card-heading">Pending <br> Appointments</span>
+                                                <div class="d-flex align-items-center my-1">
+                                                    <h4 class="mb-0 me-2">19,860</h4>
+                                                </div>
+                                            </div>
+                                            <div class="avatar">
+                                                  <span class="avatar-initial rounded bg-label-danger">
+                                                    <i class="fa-solid fa-calendar-check fa-2x"></i>
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start justify-content-between">
+                                            <div class="content-left">
+                                                <span class="text-heading card-heading">Total <br> Customers</span>
+                                                <div class="d-flex align-items-center my-1">
+                                                    <h4 class="mb-0 me-2">237</h4>
+                                                </div>
+                                            </div>
+                                            <div class="avatar">
+                                                  <span class="avatar-initial rounded bg-label-warning">
+                                                    <i class="fa-solid fa-people-group fa-2x"></i>
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- DataTable with Buttons -->
                         <div class="card">
                             <div class="card-datatable table-responsive pt-0">
@@ -53,6 +141,7 @@
                                 </table>
                             </div>
                         </div>
+
                         <!-- Modal to add new record -->
                         <div class="offcanvas offcanvas-end" id="add-new-record">
                             <div class="offcanvas-header border-bottom">
@@ -123,7 +212,6 @@
                         </div>
                         <!--/ DataTable with Buttons -->
 
-
                     </div>
                     <!-- / Content -->
 
@@ -150,6 +238,7 @@
                     </div>
                 </div>
                 <!-- Content wrapper -->
+
             </div>
             <!-- / Layout page -->
         </div>
@@ -167,4 +256,5 @@
         }
     </script>
     <!-- / Layout wrapper -->
+
 @endsection

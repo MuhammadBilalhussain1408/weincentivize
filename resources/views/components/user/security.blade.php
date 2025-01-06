@@ -13,7 +13,8 @@
 
             <!-- Layout container -->
             <div class="layout-page">
-                <!-- Navbar -->
+
+            <!-- Navbar -->
 
             @include('include.nav')
 
